@@ -7,13 +7,5 @@ import { Component, ViewEncapsulation } from '@angular/core';
 })
 export class EditorComponent {
 
-	editorOptions = {};
-
-	code: string = 'function x() {\nconsole.log("Hello world!");\n}';
-
-	onInit(editor: any) {
-		
-		// set default template
-		editor.setValue(this.code)
-	}
+	options = {}
 }
