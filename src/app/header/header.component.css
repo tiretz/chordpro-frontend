@@ -1,0 +1,15 @@
+.toolbar-spacer {
+    flex: 1 1 auto;
+}
+
+.mat-toolbar-row, .mat-toolbar-single-row {
+    height: 50px;
+}
+
+.mat-mdc-extended-fab {
+    height: 30px;
+}
+
+.mat-mdc-extended-fab>.mat-icon, .mat-mdc-extended-fab>.material-icons {
+    margin-right: 6px;
+}

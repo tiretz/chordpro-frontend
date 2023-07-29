@@ -9,14 +9,15 @@ router-outlet
     position: fixed;
     top: 0;
     width: 100%;
-    height: 64px;
+    height: 50px;
+    font-size: 12px !important;
 }
 
 .editor
 {
     display: block;
-    height: calc(100% - 89px);
-    margin-top: 64px;
+    height: calc(100% - 75px);
+    margin-top: 50px;
     margin-bottom: 25px;
 }
 

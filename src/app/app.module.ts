@@ -10,6 +10,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MonacoEditorModule, NgxMonacoEditorConfig } from 'ngx-monaco-editor-v2';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 const monacoConfig: NgxMonacoEditorConfig = {
 	baseUrl: 'assets',
@@ -175,7 +177,9 @@ const monacoConfig: NgxMonacoEditorConfig = {
 		AppRoutingModule,
 		BrowserAnimationsModule,
 		MonacoEditorModule.forRoot(monacoConfig),
-		MatToolbarModule
+		MatToolbarModule,
+		MatButtonModule,
+		MatIconModule
 	],
 	providers: [],
 	bootstrap: [ AppComponent ]
