@@ -1,31 +1,30 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { StateService } from '../state.service';
-import { Subscription } from 'rxjs';
 
 @Component({
 	selector: 'app-editor',
 	templateUrl: './editor.component.html',
 	styleUrls: ['./editor.component.css']
 })
-export class EditorComponent implements OnInit, OnDestroy {
+export class EditorComponent {
 
 	options = {}
 
-	isSideNavOpen: boolean | undefined;
-	subscription: Subscription | undefined;
-
-	constructor(private stateService: StateService) {}
-
-	ngOnInit() {
-		this.subscription = this.stateService.isSideNavOpen$.subscribe(isSideNavOpen => this.isSideNavOpen = isSideNavOpen);
+	onDownloadButtonClick() {
+		this.downloadFile("test.chopro", (<any>window).monaco.editor.getModels()[0].getValue());
 	}
 
-	ngOnDestroy() {
-		this.subscription && this.subscription.unsubscribe();
-	}
+	downloadFile(filename: string, text: string) {
 
-	openedChange() {
-		// Resize editor to fit container width
-		(<any>window).monaco?.editor.getEditors()[0].layout();
+		// Create dummy element
+		const element = document.createElement('a');
+		element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+		element.setAttribute('download', filename);
+	  
+		element.style.display = 'none';
+		document.body.appendChild(element);
+	  
+		element.click();
+	  
+		document.body.removeChild(element);
 	}
 }

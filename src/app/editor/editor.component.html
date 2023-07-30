@@ -1,6 +1,18 @@
-<mat-drawer-container [hasBackdrop]="false" style="width: 100%; height: 100%">
-    <mat-drawer #drawer [opened]="isSideNavOpen" [mode]="'side'" (openedChange)="openedChange()" style="width: 15%;">I'm a drawer</mat-drawer>
-    <mat-drawer-content id="editor-container" style="height: 100%;">
+<mat-sidenav-container [hasBackdrop]="false" style="width: 100%; height: 100%">
+    <mat-sidenav id="sidenav" opened mode="side">
+        <button id="new-button" mat-raised-button extended color="accent">
+            <mat-icon>note-add</mat-icon>
+            New
+        </button>
+        <mat-divider></mat-divider>
+        <span class="vertical-spacer"></span>
+        <mat-divider></mat-divider>
+        <button id="download-button" mat-raised-button extended color="accent" (click)="onDownloadButtonClick()">
+            <mat-icon>download</mat-icon>
+            Download
+        </button>
+    </mat-sidenav>
+    <mat-sidenav-content id="editor-container" style="height: 100%;">
         <ngx-monaco-editor style="width: 100%; height: 100%;" [options]="options"></ngx-monaco-editor>
-    </mat-drawer-content>
-</mat-drawer-container>
+    </mat-sidenav-content>
+</mat-sidenav-container>
