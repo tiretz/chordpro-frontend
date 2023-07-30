@@ -9,6 +9,14 @@ export class EditorComponent {
 
 	options = {}
 
+	onEditorContainerResize() {
+		
+		// Resize editor
+		const editors = (<any>window).monaco.editor.getEditors()
+		if (editors && editors.length > 0)
+			editors[0].layout()
+	}
+
 	onDownloadButtonClick() {
 		this.downloadFile("test.chopro", (<any>window).monaco.editor.getModels()[0].getValue());
 	}
