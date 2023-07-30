@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { StateService } from '../state.service';
 
 @Component({
 	selector: 'app-header',
@@ -7,8 +8,13 @@ import { Component } from '@angular/core';
 })
 export class HeaderComponent {
 
+	constructor(private stateService: StateService) {}
+
+	toggleDrawer() {
+		this.stateService.toggleSideNavState();
+	}
+
 	onDownloadButtonClick() {
-		
 		this.downloadFile("test.chopro", (<any>window).monaco.editor.getModels()[0].getValue());
 	}
 

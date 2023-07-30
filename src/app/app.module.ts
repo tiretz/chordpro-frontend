@@ -12,6 +12,7 @@ import { MonacoEditorModule, NgxMonacoEditorConfig } from 'ngx-monaco-editor-v2'
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 const monacoConfig: NgxMonacoEditorConfig = {
 	baseUrl: 'assets',
@@ -179,7 +180,8 @@ const monacoConfig: NgxMonacoEditorConfig = {
 		MonacoEditorModule.forRoot(monacoConfig),
 		MatToolbarModule,
 		MatButtonModule,
-		MatIconModule
+		MatIconModule,
+		MatSidenavModule
 	],
 	providers: [],
 	bootstrap: [ AppComponent ]

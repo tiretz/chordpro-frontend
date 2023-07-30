@@ -1,3 +1,6 @@
-<div id="editor-container" style="height: 100%">
-    <ngx-monaco-editor style="height: 100%;" [options]="options"></ngx-monaco-editor>
-</div>
+<mat-drawer-container [hasBackdrop]="false" style="width: 100%; height: 100%">
+    <mat-drawer #drawer [opened]="isSideNavOpen" [mode]="'side'" (openedChange)="openedChange()" style="width: 15%;">I'm a drawer</mat-drawer>
+    <mat-drawer-content id="editor-container" style="height: 100%;">
+        <ngx-monaco-editor style="width: 100%; height: 100%;" [options]="options"></ngx-monaco-editor>
+    </mat-drawer-content>
+</mat-drawer-container>
