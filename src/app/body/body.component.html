@@ -1,0 +1,18 @@
+<mat-sidenav-container [hasBackdrop]="false" style="width: 100%; height: 100%">
+    <mat-sidenav id="sidenav" opened mode="side">
+        <button id="new-button" mat-raised-button extended color="accent" (click)="openDialog()">
+            <mat-icon>add</mat-icon>
+            New
+        </button>
+        <mat-divider></mat-divider>
+        <span class="vertical-spacer"></span>
+        <mat-divider></mat-divider>
+        <button id="download-button" mat-raised-button extended color="accent" (click)="onDownloadButtonClick()">
+            <mat-icon>download</mat-icon>
+            Download
+        </button>
+    </mat-sidenav>
+    <mat-sidenav-content id="editor-container" style="height: 100%;" (window:resize)="onEditorContainerResize()" onresize="onEditorContainerResize()">
+        <app-editor></app-editor>
+    </mat-sidenav-content>
+</mat-sidenav-container>

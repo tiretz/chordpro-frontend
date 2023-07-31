@@ -2,6 +2,7 @@ router-outlet
 {
     display: block;
     height: 100%;
+    overflow: hidden;
 }
 
 .header
@@ -13,7 +14,7 @@ router-outlet
     font-size: 12px !important;
 }
 
-.editor
+.body
 {
     display: block;
     height: calc(100% - 75px);

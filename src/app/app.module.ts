@@ -4,16 +4,25 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
+import { BodyComponent } from './body/body.component';
 import { EditorComponent } from './editor/editor.component';
+import { NewDialogComponent } from './new-dialog/new-dialog.component';
 import { FooterComponent } from './footer/footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MonacoEditorModule, NgxMonacoEditorConfig } from 'ngx-monaco-editor-v2';
+import { FormsModule } from '@angular/forms';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatListModule } from '@angular/material/list';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 const monacoConfig: NgxMonacoEditorConfig = {
 	baseUrl: 'assets',
@@ -143,9 +152,9 @@ const monacoConfig: NgxMonacoEditorConfig = {
 			return [
 				"{title: }",
 				"{artist: }",
-				"{key: E}",
-				"{tempo: 120}",
-				"{duration: 3:00}",
+				"{key: }",
+				"{tempo: }",
+				"{duration: 0:00}",
 				"{midi: PC0.0:0}",
 				"{keywords: English}",
 				"",
@@ -172,18 +181,27 @@ const monacoConfig: NgxMonacoEditorConfig = {
 		AppComponent,
 		HeaderComponent,
 		EditorComponent,
-		FooterComponent
+		FooterComponent,
+		NewDialogComponent,
+		BodyComponent
 	],
 	imports: [
 		BrowserModule,
 		AppRoutingModule,
 		BrowserAnimationsModule,
 		MonacoEditorModule.forRoot(monacoConfig),
+		FormsModule,
 		MatToolbarModule,
 		MatButtonModule,
 		MatIconModule,
 		MatSidenavModule,
-		MatDividerModule
+		MatDividerModule,
+		MatDialogModule,
+		MatTabsModule,
+		MatFormFieldModule,
+		MatInputModule,
+		MatListModule,
+		MatGridListModule
 	],
 	providers: [],
 	bootstrap: [ AppComponent ]

@@ -1,0 +1,62 @@
+<h2 mat-dialog-title>Create new song template</h2>
+<mat-dialog-content class="mat-typography">
+    <mat-tab-group>
+        <mat-tab>
+            <ng-template mat-tab-label>
+            <mat-icon class="tab-icon">auto_awesome</mat-icon>
+            Automatic
+            </ng-template>
+            <form class="new-form">
+                <mat-grid-list cols="3" rowHeight="75px">
+                    <mat-grid-tile colspan="2" style="margin-right: 10px;">
+                        <mat-form-field class="full-width">
+                            <mat-label>Song title</mat-label>
+                            <input matInput placeholder="Title of the song" [value]="songTitleToSearch">
+                            <mat-hint align="start">Optional if song artist(s) is/were given</mat-hint>
+                        </mat-form-field>
+                    </mat-grid-tile>
+                    <mat-grid-tile colspan="1" style="margin-left: 10px;">
+                        <mat-form-field class="full-width">
+                            <mat-label>Song artist(s)</mat-label>
+                            <input matInput placeholder="Artist(s) of the song" [value]="songArtistsToSearch">
+                            <mat-hint align="start">Optional if song title is given</mat-hint>
+                        </mat-form-field>
+                    </mat-grid-tile>
+                    <mat-grid-tile colspan="3">
+                        <button id="query-songs-button" mat-raised-button extended color="accent" (click)="querySongSearch()">
+                            <mat-icon>search</mat-icon>
+                            Search
+                        </button>
+                    </mat-grid-tile>
+                </mat-grid-list>
+                <mat-label *ngIf="searchResults.length > 0">Select desired song :</mat-label>
+                <mat-list role="list" style="margin-top: 10px;">
+                    <mat-list-item role="listitem" *ngFor="let searchResult of searchResults">
+                        <mat-grid-list cols="2" rowHeight="75px">
+                            <mat-grid-tile rowspan="2">
+                                <img src="{{searchResult.albumCover}}">
+                            </mat-grid-tile>
+                            <mat-grid-tile>
+                                <mat-label>{{searchResult.title}}</mat-label>
+                            </mat-grid-tile>
+                            <mat-grid-tile>
+                                <mat-label>{{searchResult.artists}}</mat-label>
+                            </mat-grid-tile>
+                        </mat-grid-list>
+                    </mat-list-item>
+                </mat-list>
+            </form>
+        </mat-tab>
+        <mat-tab>
+            <ng-template mat-tab-label>
+            <mat-icon class="tab-icon">edit_note</mat-icon>
+            Manual
+            </ng-template>
+            Content 2
+        </mat-tab>
+    </mat-tab-group>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-raised-button color="primary" [mat-dialog-close]="true" cdkFocusInitial>Create</button>
+</mat-dialog-actions>

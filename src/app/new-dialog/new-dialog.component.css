@@ -1,0 +1,23 @@
+h2 {
+    margin: 0px;
+}
+
+.tab-icon {
+    margin-right: 8px;
+}
+
+.new-form {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.full-width {
+    width: 100%;
+}
+
+mat-hint {
+    overflow: hidden;
+    width: auto;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
