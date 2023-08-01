@@ -2,12 +2,12 @@ import { IGeniusSongData } from "./api.results";
 
 interface IHeader {
     'X-RapidAPI-Key': string;
-    'X-RapidAPI-Host': string
+    'X-RapidAPI-Host': string;
 }
 
 interface IRequestHeader {
     method: string;
-    headers: IHeader
+    headers: IHeader;
 }
 
 const request: IRequestHeader = {
@@ -18,10 +18,10 @@ const request: IRequestHeader = {
     }
 };
 
-async function getLyricsByTitleAndOrArtist(songNameAndOrArtist: string): Promise<string | null> {
+export async function getLyricsByTitleAndOrArtist(songNameAndOrArtist: string): Promise<string | null> {
 
     const url = `https://genius-song-lyrics1.p.rapidapi.com/search/?q=${encodeURIComponent(songNameAndOrArtist)}&per_page=5&page=1&text_format=plain`;
-
+    
     try {
         const response = await fetch(url, (<any>request));
 
@@ -33,6 +33,9 @@ async function getLyricsByTitleAndOrArtist(songNameAndOrArtist: string): Promise
                 views: element.result.stats.pageviews,
             };
         });
+
+        if (result.length === 0)
+            return null;
 
         result.sort((a: IGeniusSongData, b: IGeniusSongData) => { return b.views - a.views });
 

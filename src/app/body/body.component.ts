@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { NewDialogComponent } from '../new-dialog/new-dialog.component';
+import { ISongInformation, ISongMetaData } from '../apis/api.results';
+import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-body',
@@ -9,7 +11,7 @@ import { NewDialogComponent } from '../new-dialog/new-dialog.component';
 })
 export class BodyComponent {
 
-	constructor(public dialog: MatDialog) {}
+	constructor(public dialog: MatDialog, private apiService: ApiService) {}
 
 	openDialog() {
 		
@@ -19,8 +21,23 @@ export class BodyComponent {
 			exitAnimationDuration: '500ms',
 		});
 
-		dialogRef.afterClosed().subscribe(result => {
-			console.log(`Dialog result: ${result}`);
+		dialogRef.afterClosed().subscribe(async result => {
+
+			const songInformation = result as ISongInformation;
+
+			if (songInformation === undefined)
+				return;
+			
+			console.log(songInformation);
+
+			const songMetaData: ISongMetaData | null = await this.apiService.getSongMetaData(songInformation);
+			console.log(songMetaData);
+
+			if (songMetaData === null)
+				return;
+
+			const songLyrics: string | null = await this.apiService.getSongLyrics(songInformation);
+			console.log(songLyrics);			
 		});
 	}
 

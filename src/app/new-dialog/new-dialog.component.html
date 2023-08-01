@@ -30,11 +30,11 @@
                     </mat-grid-tile>
                 </mat-grid-list>
                 <mat-label *ngIf="searchResults.length > 0">Select desired song :</mat-label>
-                <mat-selection-list role="list" [multiple]="false" [hideSingleSelectionIndicator]="true" style="margin-top: 10px;">
-                    <mat-list-option role="listitem" *ngFor="let searchResult of searchResults" style="margin-bottom: 10px; background-color: rgba(255, 255, 255, 0.04);">
+                <mat-selection-list #songs role="list" [multiple]="false" [hideSingleSelectionIndicator]="true" style="margin-top: 10px;" (selectionChange)="onSongSelected($event, songs.selectedOptions.selected)">
+                    <mat-list-option role="listitem" *ngFor="let searchResult of searchResults" [value]="searchResult" style="margin-bottom: 10px; background-color: rgba(255, 255, 255, 0.04);">
                         <img matListItemAvatar [src]="searchResult.albumCoverImg" alt="" style="border-radius: 0px; margin-top: 0px; margin-left: 0px; width: 72px; height: 72px;">
                         <div matListItemTitle>{{ searchResult.title }}</div>
-                        <div matListItemLine>{{ searchResult.artists }}</div>
+                        <div matListItemLine>{{ searchResult.artists.join(', ') }}</div>
                     </mat-list-option>
                 </mat-selection-list>
             </div>
@@ -50,5 +50,5 @@
 </mat-dialog-content>
 <mat-dialog-actions align="end">
     <button mat-button mat-dialog-close>Cancel</button>
-    <button mat-raised-button color="primary" [mat-dialog-close]="true" cdkFocusInitial>Create</button>
+    <button mat-raised-button color="primary" cdkFocusInitial [disabled]="createSongDisabled" (click)="onCreateButtonClick()">Create</button>
 </mat-dialog-actions>
