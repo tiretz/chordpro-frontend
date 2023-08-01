@@ -1,6 +1,18 @@
-export interface SearchResult {
-
+export interface ISongInformation {
+    
     title: string;
-    artists: string;
-    albumCover: string;
+    artists: string[];
+    album: string;
+    releaseDateAlbum: Date;
+    albumCoverImg: string;
+    spotifySongID: string;
+    spotifyLink: string;
+}
+
+export interface ISongMetaData {
+    key: string;
+    chords: string[];
+    bpm: string;
+    duration: string;
+    timeSignature: string;
 }

@@ -1,15 +1,13 @@
 import { Injectable } from '@angular/core';
-import { SearchResult } from './apis/api.results';
+import { ISongInformation } from './apis/api.results';
+import { getSongInformation } from './apis/spotify.api';
 
 @Injectable({
 	providedIn: 'root'
 })
 export class ApiService {
 
-	constructor() { }
-
-	getSearchResults(songTitle: string | undefined, songArtists: string | undefined): SearchResult[] {
-
-		return [ { title: 'Title', artists: 'Artist', albumCover: 'url' } ]
+	async getSearchResults(songTitle: string, songArtists: string): Promise<ISongInformation[]> {
+		return await getSongInformation(songTitle, songArtists);
 	}
 }
