@@ -1,5 +1,5 @@
 export interface ISongInformation {
-    
+
     title: string;
     artists: string[];
     album: string;
@@ -15,4 +15,9 @@ export interface ISongMetaData {
     bpm: string;
     duration: string;
     timeSignature: string;
+}
+
+export interface IGeniusSongData {
+    id: number;
+    views: number;
 }
