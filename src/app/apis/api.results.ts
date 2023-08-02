@@ -12,7 +12,7 @@ export interface ISongInformation {
 export interface ISongMetaData {
     key: string;
     chords: string[];
-    bpm: string;
+    bpm: number;
     duration: string;
     timeSignature: string;
 }

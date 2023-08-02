@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
 
 @Component({
 	selector: 'app-editor',
@@ -7,5 +7,7 @@ import { Component } from '@angular/core';
 })
 export class EditorComponent {
 
-	options = {}
+	options: any = { }
+
+	constructor() { }
 }

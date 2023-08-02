@@ -141,27 +141,6 @@ const monacoConfig: NgxMonacoEditorConfig = {
 			},
 		});
 
-		// Create document with custom language and text template
-		// monaco.editor.create(document.getElementsByClassName("editor-container")[0], {
-		// 	theme: "chordpro-theme",
-		// 	value: getInitialTemplate(),
-		// 	language: "chordpro",
-		// });
-
-		function getInitialTemplate() {
-			return [
-				"{title: }",
-				"{artist: }",
-				"{key: }",
-				"{tempo: }",
-				"{duration: 0:00}",
-				"{midi: PC0.0:0}",
-				"{keywords: English}",
-				"",
-				"",
-			].join("\n");
-		}
-
 		// Dirty workaround to remove initial editor
 		const editorContainer = document.getElementById("editor-container");
 		if (editorContainer)
@@ -169,7 +148,7 @@ const monacoConfig: NgxMonacoEditorConfig = {
 
 		// Create new document (model)
 		monaco.editor.create(editorContainer, {
-			value: getInitialTemplate(),
+			value: null,
 			language: "chordpro",
 			theme: "chordpro-theme",
 		});

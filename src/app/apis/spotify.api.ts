@@ -105,7 +105,7 @@ export async function getSongMetaData(spotifySongID: string): Promise<ISongMetaD
         return {
             key: chords[0],
             chords,
-            bpm: objDurationKeyBPM.tempo,
+            bpm: Number(objDurationKeyBPM.tempo),
             duration,
             timeSignature: `${objDurationKeyBPM.time_signature}/4`,
         }
