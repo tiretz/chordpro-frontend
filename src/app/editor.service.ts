@@ -11,9 +11,19 @@ export class EditorService {
 
 	constructor(private apiService: ApiService) { }
 
-	async initNewSong(songInformation: ISongInformation) {
+	getEditorValue(): string | null {
+		
+		this.setEditorInstance();
+		return this.monacoEditor.editor?.getModels()[0]?.getValue();
+	}
+
+	setEditorValue(value: string) {
 
 		this.setEditorInstance();
+		this.monacoEditor.editor?.getModels()[0]?.setValue(value);
+	}
+
+	async initNewSong(songInformation: ISongInformation) {
 
 		const songMetaData: ISongMetaData | null = await this.apiService.getSongMetaData(songInformation);
 
@@ -22,7 +32,7 @@ export class EditorService {
 
 		const songLyrics: string | null = await this.apiService.getSongLyrics(songInformation);
 
-		this.monacoEditor.editor?.getModels()[0]?.setValue(this.generateSongTemplateWithLyrics(songInformation, songMetaData, songLyrics))
+		this.setEditorValue(this.generateSongTemplateWithLyrics(songInformation, songMetaData, songLyrics))
 	}
 
 	private setEditorInstance() {

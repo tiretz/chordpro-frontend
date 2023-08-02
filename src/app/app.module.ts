@@ -23,6 +23,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { OverrideDialogComponent } from './override-dialog/override-dialog.component';
 
 const monacoConfig: NgxMonacoEditorConfig = {
 	baseUrl: 'assets',
@@ -162,7 +163,8 @@ const monacoConfig: NgxMonacoEditorConfig = {
 		EditorComponent,
 		FooterComponent,
 		NewDialogComponent,
-		BodyComponent
+		BodyComponent,
+  OverrideDialogComponent
 	],
 	imports: [
 		BrowserModule,
@@ -186,6 +188,4 @@ const monacoConfig: NgxMonacoEditorConfig = {
 	bootstrap: [ AppComponent ]
 })
 
-export class AppModule {
-	
-}
+export class AppModule { }

@@ -3,6 +3,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { NewDialogComponent } from '../new-dialog/new-dialog.component';
 import { ISongInformation } from '../apis/api.results';
 import { EditorService } from '../editor.service';
+import { OverrideDialogComponent, OverrideDialogModel } from '../override-dialog/override-dialog.component';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-body',
@@ -13,8 +15,25 @@ export class BodyComponent {
 
 	constructor(public dialog: MatDialog, private editorService: EditorService) {}
 
-	openDialog() {
-		
+	async openDialog() {
+
+		if (this.editorService.getEditorValue())
+		{
+			const dialogRef = this.dialog.open(OverrideDialogComponent, {
+				width: '400px',
+				enterAnimationDuration: '500ms',
+				exitAnimationDuration: '500ms',
+				data: new OverrideDialogModel('Override document', 'Do you really want to override your current song document?')
+			});
+
+			const overrideResult = await firstValueFrom(dialogRef.afterClosed());
+
+			if (!overrideResult)
+				return;
+		}
+
+		this.editorService.setEditorValue('');
+				
 		const dialogRef = this.dialog.open(NewDialogComponent, {
 			width: '80%',
 			enterAnimationDuration: '500ms',
