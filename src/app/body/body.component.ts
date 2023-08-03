@@ -46,8 +46,6 @@ export class BodyComponent {
 
 			if (songInformation === undefined)
 				return;
-			
-			console.log(songInformation);
 
 			this.editorService.initNewSong(songInformation);
 		});

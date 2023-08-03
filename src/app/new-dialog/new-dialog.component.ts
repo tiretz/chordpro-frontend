@@ -11,11 +11,11 @@ import { MatDialogRef } from '@angular/material/dialog';
 })
 export class NewDialogComponent {
 
-	public createSongDisabled: boolean = true;
-	public songTitleToSearch: string = "";
-	public songArtistsToSearch: string = "";
+	createSongDisabled: boolean = true;
+	songTitleToSearch: string = "";
+	songArtistsToSearch: string = "";
 
-	public searchResults: ISongInformation[] = [];
+	searchResults: ISongInformation[] = [];
 
 	private selectedSong: ISongInformation | undefined;
 

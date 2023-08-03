@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ISongInformation, ISongMetaData } from './apis/api.results';
 import { ApiService } from './api.service';
+import { DocumentService } from './document.service';
 
 @Injectable({
 	providedIn: 'root'
@@ -9,7 +10,7 @@ export class EditorService {
 
 	monacoEditor: any | undefined;
 
-	constructor(private apiService: ApiService) { }
+	constructor(private documentService: DocumentService, private apiService: ApiService) { }
 
 	getEditorValue(): string | null {
 		
@@ -32,6 +33,7 @@ export class EditorService {
 
 		const songLyrics: string | null = await this.apiService.getSongLyrics(songInformation);
 
+		this.documentService.setDocumentData(songInformation, songMetaData, songLyrics);
 		this.setEditorValue(this.generateSongTemplateWithLyrics(songInformation, songMetaData, songLyrics))
 	}
 

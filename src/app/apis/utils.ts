@@ -1,57 +1,110 @@
 export function getChordsForKeyAndMode(key: number, mode: number): string[] {
 
+    let chords: string[];
+
     switch (`${key}_${mode}`) {
         case '0_1':
-            return ["C", "Dm", "Em", "F", "G", "Am", "B°"];
+            chords = ["C", "Dm", "Em", "F", "G", "Am", "B°"];
+            break;
+
         case '9_0':
-            return ["Am", "B°", "C", "Dm", "Em", "F", "G"];
+            chords = ["Am", "B°", "C", "Dm", "Em", "F", "G"];
+            break;
+            
         case '7_1':
-            return ["G", "Am", "Bm", "C", "D", "Em", "F#°"];
+            chords = ["G", "Am", "Bm", "C", "D", "Em", "F#°"];
+            break;
+            
         case '4_0':
-            return ["Em", "F#°", "G", "Am", "Bm", "C", "D"];
+            chords = ["Em", "F#°", "G", "Am", "Bm", "C", "D"];
+            break;
+            
         case '3_1':
-            return ["D", "Em", "F#m", "G", "A", "Bm", "C#°"];
+            chords = ["D", "Em", "F#m", "G", "A", "Bm", "C#°"];
+            break;
+            
         case '11_0':
-            return ["Bm", "C#°", "D", "Em", "F#m", "G", "A"];
+            chords = ["Bm", "C#°", "D", "Em", "F#m", "G", "A"];
+            break;
+            
         case '9_1':
-            return ["A", "Bm", "C#m", "D", "E", "F#m", "G#°"];
+            chords = ["A", "Bm", "C#m", "D", "E", "F#m", "G#°"];
+            break;
+            
         case '6_0':
-            return ["F#m", "G#°", "A", "Bm", "C#m", "D", "E"];
+            chords = ["F#m", "G#°", "A", "Bm", "C#m", "D", "E"];
+            break;
+            
         case '4_1':
-            return ["E", "F#m", "G#m", "A", "B", "C#m", "D#°"];
+            chords = ["E", "F#m", "G#m", "A", "B", "C#m", "D#°"];
+            break;
+            
         case '1_0':
-            return ["C#m", "D#°", "E", "F#m", "G#m", "A", "B"];
+            chords = ["C#m", "D#°", "E", "F#m", "G#m", "A", "B"];
+            break;
+            
         case '11_1':
-            return ["B", "C#m", "D#m", "E", "F#", "G#m", "A#°"];
+            chords = ["B", "C#m", "D#m", "E", "F#", "G#m", "A#°"];
+            break;
+            
         case '8_0':
-            return ["G#m", "A#°", "B", "C#m", "D#m", "E", "F#"];
+            chords = ["G#m", "A#°", "B", "C#m", "D#m", "E", "F#"];
+            break;
+            
         case '6_1':
-            return ["F#", "G#m", "A#m", "B", "C#", "D#m", "E#°"];
+            chords = ["F#", "G#m", "A#m", "B", "C#", "D#m", "E#°"];
+            break;
+            
         case '3_0':
-            return ["D#m", "E#°", "F#", "G#m", "A#m", "B", "C#"];
+            chords = ["D#m", "E#°", "F#", "G#m", "A#m", "B", "C#"];
+            break;
+            
         case '5_1':
-            return ["F", "Gm", "Am", "Bb", "C", "Dm", "E°"];
+            chords = ["F", "Gm", "Am", "Bb", "C", "Dm", "E°"];
+            break;
+            
         case '2_0':
-            return ["Dm", "E°", "F", "Gm", "Am", "Bb", "C"];
+            chords = ["Dm", "E°", "F", "Gm", "Am", "Bb", "C"];
+            break;
+            
         case '10_1':
-            return ["Bb", "Cm", "Dm", "Eb", "F", "Gm", "A°"];
+            chords = ["Bb", "Cm", "Dm", "Eb", "F", "Gm", "A°"];
+            break;
+            
         case '7_0':
-            return ["Gm", "A°", "Bb", "Cm", "Dm", "Eb", "F"];
+            chords = ["Gm", "A°", "Bb", "Cm", "Dm", "Eb", "F"];
+            break;
+            
         case '3_1':
-            return ["Eb", "Fm", "Gm", "Ab", "Bb", "Cm", "D°"];
+            chords = ["Eb", "Fm", "Gm", "Ab", "Bb", "Cm", "D°"];
+            break;
+            
         case '0_0':
-            return ["Cm", "D°", "Eb", "Fm", "Gm", "Ab", "Bb"];
+            chords = ["Cm", "D°", "Eb", "Fm", "Gm", "Ab", "Bb"];
+            break;
+            
         case '8_1':
-            return ["Ab", "Bbm", "Cm", "Db", "Eb", "Fm", "G°"];
+            chords = ["Ab", "Bbm", "Cm", "Db", "Eb", "Fm", "G°"];
+            break;
+            
         case '5_0':
-            return ["Fm", "G°", "Ab", "Bbm", "Cm", "Db", "Eb"];
+            chords = ["Fm", "G°", "Ab", "Bbm", "Cm", "Db", "Eb"];
+            break;
+            
         case '1_1':
-            return ["Db", "Ebm", "Fm", "Gb", "Ab", "Bbm", "C°"];
+            chords = ["Db", "Ebm", "Fm", "Gb", "Ab", "Bbm", "C°"];
+            break;
+            
         case '10_0':
-            return ["Bbm", "C°", "Db", "Ebm", "Fm", "Gb", "Ab"];
+            chords = ["Bbm", "C°", "Db", "Ebm", "Fm", "Gb", "Ab"];
+            break;
+            
         default:
-            return [];
+            chords = [];
+            break;
     }
+
+    return chords.filter(s => !s.includes('°'));
 }
 
 export function getDurationInMinAndSec(ms: number): string {
