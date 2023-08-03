@@ -19,7 +19,7 @@ export class NewDialogComponent {
 
 	private selectedSong: ISongInformation | undefined;
 
-	constructor(public dialogRef: MatDialogRef<NewDialogComponent>, private apiService: ApiService) {}
+	constructor(private dialogRef: MatDialogRef<NewDialogComponent>, private apiService: ApiService) {}
 
 	onSongSelected(event: MatSelectionListChange, selectedSongs: MatListOption[]) {
 

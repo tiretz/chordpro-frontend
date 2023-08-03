@@ -4,4 +4,4 @@ html, body { height: 100vh; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 app-root { display: block; height: 100%; }
 .editor-container { height: 100% !important; }
-.cdk-global-overlay-wrapper { margin-top: 5%; align-items: start !important; }
+.loading-overlay-container > mat-dialog-container > div > div { background-color: transparent !important; box-shadow: none !important; }

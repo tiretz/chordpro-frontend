@@ -13,7 +13,7 @@ import { firstValueFrom } from 'rxjs';
 })
 export class BodyComponent {
 
-	constructor(public dialog: MatDialog, private editorService: EditorService) {}
+	constructor(private dialog: MatDialog, private editorService: EditorService) {}
 
 	async openDialog() {
 

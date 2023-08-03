@@ -8,10 +8,16 @@ import { BodyComponent } from './body/body.component';
 import { EditorComponent } from './editor/editor.component';
 import { NewDialogComponent } from './new-dialog/new-dialog.component';
 import { FooterComponent } from './footer/footer.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { OverrideDialogComponent } from './override-dialog/override-dialog.component';
+import { ChordSelectorComponent } from './chord-selector/chord-selector.component';
+import { LoadingOverlayComponent } from './loading-overlay/loading-overlay.component';
 
 import { MonacoEditorModule, NgxMonacoEditorConfig } from 'ngx-monaco-editor-v2';
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import { FormsModule } from '@angular/forms';
+
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -23,8 +29,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatGridListModule } from '@angular/material/grid-list';
-import { OverrideDialogComponent } from './override-dialog/override-dialog.component';
-import { ChordSelectorComponent } from './chord-selector/chord-selector.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
 
 const monacoConfig: NgxMonacoEditorConfig = {
 	baseUrl: 'assets',
@@ -166,7 +171,8 @@ const monacoConfig: NgxMonacoEditorConfig = {
 		NewDialogComponent,
 		BodyComponent,
   OverrideDialogComponent,
-  ChordSelectorComponent
+  ChordSelectorComponent,
+  LoadingOverlayComponent
 	],
 	imports: [
 		BrowserModule,
@@ -184,7 +190,8 @@ const monacoConfig: NgxMonacoEditorConfig = {
 		MatFormFieldModule,
 		MatInputModule,
 		MatListModule,
-		MatGridListModule
+		MatGridListModule,
+		MatProgressSpinnerModule
 	],
 	providers: [],
 	bootstrap: [ AppComponent ]
