@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommunicationService } from '../communication.service';
 import { Subscription } from 'rxjs';
+import { EditorService } from '../editor.service';
 
 @Component({
 	selector: 'app-chord-selector',
@@ -13,7 +14,7 @@ export class ChordSelectorComponent implements OnInit, OnDestroy {
 
 	private initialChordsSubscription: Subscription | undefined;
 
-	constructor(private communicationService: CommunicationService) {}
+	constructor(private communicationService: CommunicationService, private editorService: EditorService) {}
 
 	ngOnDestroy(): void {
 		this.initialChordsSubscription?.unsubscribe();
@@ -23,5 +24,10 @@ export class ChordSelectorComponent implements OnInit, OnDestroy {
 		this.initialChordsSubscription = this.communicationService.initialChords$.subscribe((chords) => {
 			this.chords = chords;
 		});
+	}
+
+	insertChord(chord: string) {
+
+		this.editorService.getEditor().executeEdits("insert-chord", [{ range: this.editorService.getEditor().getSelection(), text: `[${chord}]`, forceMoveMarkers: true }]);
 	}
 }

@@ -1,6 +1,6 @@
 <mat-grid-list cols="2" rowHeight="35px" gutterSize="5px" *ngIf="chords.length > 0">
     <mat-grid-tile *ngFor="let chord of chords">
-        <button mat-raised-button color="primary" [matTooltip]="chord" matTooltipPosition="below">[{{chord}}]</button>
+        <button mat-raised-button color="primary" [matTooltip]="chord" matTooltipPosition="below" (click)="insertChord(chord)">[{{chord}}]</button>
     </mat-grid-tile>
 </mat-grid-list>
 <mat-divider *ngIf="chords.length > 0"></mat-divider>
