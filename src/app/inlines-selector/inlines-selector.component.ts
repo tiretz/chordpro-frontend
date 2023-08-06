@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { EditorService } from '../editor.service';
 
 export enum InlineType {
 	Square_brackets = '[]',
@@ -16,4 +17,28 @@ export class InlinesSelectorComponent {
 		InlineType.Square_brackets,
 		InlineType.Curly_brackets
 	];
+
+	constructor(private editorService: EditorService) { }
+
+	insertInline(inline: string) {
+
+		const selectedText = this.editorService.getModel().getValueInRange(this.editorService.getEditor().getSelection());
+
+		let textToInsert = '';
+
+		switch(inline) {
+			case InlineType.Square_brackets:
+				textToInsert = `[${selectedText}]`;
+				break;
+			
+			case InlineType.Curly_brackets:
+				textToInsert = `{${selectedText}}`;
+				break;
+			
+			default:
+				break;
+		};
+
+		this.editorService.getEditor().executeEdits("insert-preselected-text-with-inline", [{ range: this.editorService.getEditor().getSelection(), text: textToInsert, forceMoveMarkers: true }]);
+	}
 }

@@ -116,6 +116,9 @@ const monacoConfig: NgxMonacoEditorConfig = {
 
 					// Verse
 					{ label: "verse", kind: monaco.languages.CompletionItemKind.Snippet, insertText: ["{sov: Verse $0}", "", "{eov}", ""].join("\n"), insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet, documentation: "Verse snipped.", range: range },
+					{ label: "verse1", kind: monaco.languages.CompletionItemKind.Snippet, insertText: ["{sov: Verse 1}", "$0", "{eov}", ""].join("\n"), insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet, documentation: "Verse 1 snipped.", range: range },
+					{ label: "verse2", kind: monaco.languages.CompletionItemKind.Snippet, insertText: ["{sov: Verse 2}", "$0", "{eov}", ""].join("\n"), insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet, documentation: "Verse 2 snipped.", range: range },
+					{ label: "verse3", kind: monaco.languages.CompletionItemKind.Snippet, insertText: ["{sov: Verse 3}", "$0", "{eov}", ""].join("\n"), insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet, documentation: "Verse 3 snipped.", range: range },
 					{ label: "sov", kind: monaco.languages.CompletionItemKind.Snippet, insertText: ["{sov: Verse $0}", ""].join("\n"), insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet, documentation: "Start of verse.", range: range },
 					{ label: "eov", kind: monaco.languages.CompletionItemKind.Text, insertText: ["{eov}", ""].join("\n"), documentation: "End of verse.", range: range },
 					{ label: "start_of_verse", kind: monaco.languages.CompletionItemKind.Snippet, insertText: ["{start_of_verse: Verse $0}", ""].join("\n"), insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet, documentation: "Start of verse.", range: range },

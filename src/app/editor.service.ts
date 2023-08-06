@@ -9,20 +9,30 @@ import { LoadingOverlayService } from './loading-overlay.service';
 })
 export class EditorService {
 
-	monacoEditor: any | undefined;
+	private monacoEditor: any | undefined;
+	private editor: any | undefined;
+	private model: any | undefined;
 
 	constructor(private loadingOverlayService: LoadingOverlayService, private documentService: DocumentService, private apiService: ApiService) { }
 
+	getModel(): any {
+
+		this.setMonacoInstance();
+		return this.model;
+	}
+
+	getEditor(): any {
+
+		this.setMonacoInstance();
+		return this.editor;
+	}
+
 	getEditorValue(): string | null {
-		
-		this.setEditorInstance();
-		return this.monacoEditor.editor?.getModels()[0]?.getValue();
+		return this.getEditor().getValue();
 	}
 
 	setEditorValue(value: string) {
-
-		this.setEditorInstance();
-		this.monacoEditor.editor?.getModels()[0]?.setValue(value);
+		this.getEditor().setValue(value);
 	}
 
 	async initNewSong(songInformation: ISongInformation) {
@@ -47,10 +57,16 @@ export class EditorService {
 		this.loadingOverlayService.hideLoadingOverlay();
 	}
 
-	private setEditorInstance() {
+	private setMonacoInstance() {
 
 		if (this.monacoEditor === undefined)
 			this.monacoEditor = (<any>window).monaco;
+
+		if (this.editor === undefined)
+			this.editor = this.monacoEditor.editor?.getEditors()[0];
+
+		if (this.model === undefined)
+			this.model = this.monacoEditor.editor?.getModels()[0];
 	}
 
 	private generateSongTemplateWithLyrics(songInformation: ISongInformation, songMetaData: ISongMetaData, songLyrics: string | null): string {
