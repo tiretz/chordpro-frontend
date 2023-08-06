@@ -44,7 +44,7 @@ export class HeaderComponent {
 
 			const songInformation = result as ISongInformation;
 
-			if (songInformation === undefined)
+			if (!songInformation)
 				return;
 
 			this.editorService.initNewSong(songInformation);
