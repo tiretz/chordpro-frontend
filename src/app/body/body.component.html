@@ -1,18 +1,10 @@
 <mat-sidenav-container id="sidenav-container" [hasBackdrop]="false">
     <mat-sidenav id="sidenav" opened mode="side" disableClose="true">
-        <button id="new-button" mat-raised-button extended color="accent" (click)="openDialog()">
-            <mat-icon>add</mat-icon>
-            New
-        </button>
-        <mat-divider></mat-divider>
         <app-chord-selector></app-chord-selector>
-        <mat-divider></mat-divider>
-        <button id="download-button" mat-raised-button extended color="accent" (click)="onDownloadButtonClick()">
-            <mat-icon>download</mat-icon>
-            Download
-        </button>
+        <app-inlines-selector></app-inlines-selector>
+        <app-section-selector></app-section-selector>
     </mat-sidenav>
-    <mat-sidenav-content id="editor-container" style="height: 100%;" (window:resize)="onEditorContainerResize()" onresize="onEditorContainerResize()">
+    <mat-sidenav-content id="editor-container" (window:resize)="onEditorContainerResize()" onresize="onEditorContainerResize()">
         <app-editor></app-editor>
     </mat-sidenav-content>
 </mat-sidenav-container>

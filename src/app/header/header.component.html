@@ -1,3 +1,12 @@
 <mat-toolbar color="primary">
     <span>ChordPro</span>
+    <span class="horizontal-spacer"></span>
+    <button id="new-button" mat-raised-button extended color="accent" (click)="openDialog()">
+        <mat-icon>add</mat-icon>
+        New
+    </button>
+    <button id="download-button" mat-raised-button extended color="accent" (click)="onDownloadButtonClick()">
+        <mat-icon>download</mat-icon>
+        Download
+    </button>
 </mat-toolbar>

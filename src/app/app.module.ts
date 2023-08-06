@@ -11,6 +11,7 @@ import { FooterComponent } from './footer/footer.component';
 import { OverrideDialogComponent } from './override-dialog/override-dialog.component';
 import { ChordSelectorComponent } from './chord-selector/chord-selector.component';
 import { LoadingOverlayComponent } from './loading-overlay/loading-overlay.component';
+import { SectionSelectorComponent } from './section-selector/section-selector.component';
 
 import { MonacoEditorModule, NgxMonacoEditorConfig } from 'ngx-monaco-editor-v2';
 
@@ -29,7 +30,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatGridListModule } from '@angular/material/grid-list';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { InlinesSelectorComponent } from './inlines-selector/inlines-selector.component';
 
 const monacoConfig: NgxMonacoEditorConfig = {
 	baseUrl: 'assets',
@@ -170,9 +173,11 @@ const monacoConfig: NgxMonacoEditorConfig = {
 		FooterComponent,
 		NewDialogComponent,
 		BodyComponent,
-  OverrideDialogComponent,
-  ChordSelectorComponent,
-  LoadingOverlayComponent
+		OverrideDialogComponent,
+		ChordSelectorComponent,
+		LoadingOverlayComponent,
+		SectionSelectorComponent,
+  InlinesSelectorComponent
 	],
 	imports: [
 		BrowserModule,
@@ -191,7 +196,8 @@ const monacoConfig: NgxMonacoEditorConfig = {
 		MatInputModule,
 		MatListModule,
 		MatGridListModule,
-		MatProgressSpinnerModule
+		MatProgressSpinnerModule,
+		MatTooltipModule
 	],
 	providers: [],
 	bootstrap: [ AppComponent ]
