@@ -5,6 +5,7 @@ import { EditorService } from '../editor.service';
 import { OverrideDialogComponent, OverrideDialogModel } from '../override-dialog/override-dialog.component';
 import { firstValueFrom } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
+import { DocumentService } from '../document.service';
 
 @Component({
 	selector: 'app-header',
@@ -13,7 +14,7 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class HeaderComponent {
 
-	constructor(private dialog: MatDialog, private editorService: EditorService) {}
+	constructor(private dialog: MatDialog, private editorService: EditorService, private documentService: DocumentService) {}
 
 	async openDialog() {
 
@@ -52,7 +53,7 @@ export class HeaderComponent {
 	}
 
 	onDownloadButtonClick() {
-		this.downloadFile("test.chopro", (<any>window).monaco.editor.getModels()[0].getValue());
+		this.downloadFile(`${this.documentService.songInformation?.artists.join(', ')} - ${this.documentService.songInformation?.title}.chopro`, this.editorService.getEditorValue() || '');
 	}
 
 	downloadFile(filename: string, text: string) {
