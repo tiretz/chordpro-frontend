@@ -12,6 +12,7 @@ import { OverrideDialogComponent } from './override-dialog/override-dialog.compo
 import { ChordSelectorComponent } from './chord-selector/chord-selector.component';
 import { LoadingOverlayComponent } from './loading-overlay/loading-overlay.component';
 import { SectionSelectorComponent } from './section-selector/section-selector.component';
+import { InlinesSelectorComponent } from './inlines-selector/inlines-selector.component';
 
 import { MonacoEditorModule, NgxMonacoEditorConfig } from 'ngx-monaco-editor-v2';
 
@@ -32,7 +33,9 @@ import { MatListModule } from '@angular/material/list';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { InlinesSelectorComponent } from './inlines-selector/inlines-selector.component';
+import { MatSelectModule } from '@angular/material/select';
+
+import { provideEnvironmentNgxMask, NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
 
 const monacoConfig: NgxMonacoEditorConfig = {
 	baseUrl: 'assets',
@@ -180,7 +183,7 @@ const monacoConfig: NgxMonacoEditorConfig = {
 		ChordSelectorComponent,
 		LoadingOverlayComponent,
 		SectionSelectorComponent,
-  InlinesSelectorComponent
+  		InlinesSelectorComponent
 	],
 	imports: [
 		BrowserModule,
@@ -200,9 +203,12 @@ const monacoConfig: NgxMonacoEditorConfig = {
 		MatListModule,
 		MatGridListModule,
 		MatProgressSpinnerModule,
-		MatTooltipModule
+		MatTooltipModule,
+		MatSelectModule,
+		NgxMaskDirective,
+		NgxMaskPipe
 	],
-	providers: [],
+	providers: [ provideEnvironmentNgxMask() ],
 	bootstrap: [ AppComponent ]
 })
 

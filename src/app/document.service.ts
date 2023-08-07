@@ -13,11 +13,11 @@ export class DocumentService {
 
 	constructor(private communicationService: CommunicationService) { }
 
-	setDocumentData(songInformation: ISongInformation, songMetaData: ISongMetaData, songLyrics: string | null) {
+	setDocumentData(songInformation: ISongInformation, songMetaData: ISongMetaData, songLyrics?: string | null) {
 
 		this.songInformation = songInformation;
 		this.songMetaData = songMetaData;
-		this.songLyrics = songLyrics;
+		this.songLyrics = songLyrics || null;
 
 		this.communicationService.setInitialChords(this.songMetaData.chords);
 	}

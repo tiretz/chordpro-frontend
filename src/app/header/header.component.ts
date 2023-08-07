@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { NewDialogComponent } from '../new-dialog/new-dialog.component';
-import { ISongInformation } from '../apis/api.results';
 import { EditorService } from '../editor.service';
 import { OverrideDialogComponent, OverrideDialogModel } from '../override-dialog/override-dialog.component';
 import { firstValueFrom } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { DocumentService } from '../document.service';
+import { IAutomaticDialogResult, IManualDialogResult } from '../interfaces/dialog.results';
 
 @Component({
 	selector: 'app-header',
@@ -43,12 +43,25 @@ export class HeaderComponent {
 
 		dialogRef.afterClosed().subscribe(async result => {
 
-			const songInformation = result as ISongInformation;
+			const selectedTabIndex = dialogRef.componentInstance.selectedTabIndex;
 
-			if (!songInformation)
-				return;
+			if (selectedTabIndex == 0) {
 
-			this.editorService.initNewSong(songInformation);
+				const automaticResult = result as IAutomaticDialogResult;
+
+				if (!automaticResult)
+					return;
+				
+				this.editorService.initNewAutomaticSong(automaticResult);
+			} else if (selectedTabIndex == 1) {
+
+				const manualResult = result as IManualDialogResult;
+
+				if (!manualResult)
+					return;
+
+				this.editorService.initNewManualSong(manualResult);
+			}
 		});
 	}
 

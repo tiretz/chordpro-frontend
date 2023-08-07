@@ -6,7 +6,8 @@ h2 {
     margin-right: 8px;
 }
 
-.new-form {
+.new-automatic-form, .new-manual-form {
+    height: calc(100% - 40px);
     padding-top: 20px;
     padding-bottom: 20px;
 }

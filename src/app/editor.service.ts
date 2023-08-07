@@ -3,6 +3,7 @@ import { ISongInformation, ISongMetaData } from './apis/api.results';
 import { ApiService } from './api.service';
 import { DocumentService } from './document.service';
 import { LoadingOverlayService } from './loading-overlay.service';
+import { IAutomaticDialogResult, IManualDialogResult } from './interfaces/dialog.results';
 
 @Injectable({
 	providedIn: 'root'
@@ -35,7 +36,7 @@ export class EditorService {
 		this.getEditor().setValue(value);
 	}
 
-	async initNewSong(songInformation: ISongInformation) {
+	async initNewAutomaticSong(songInformation: IAutomaticDialogResult) {
 
 		this.loadingOverlayService.showLoadingOverlay('Query song meta data ...');
 
@@ -57,6 +58,20 @@ export class EditorService {
 		this.loadingOverlayService.hideLoadingOverlay();
 	}
 
+	initNewManualSong(songInformationAndMetaData: IManualDialogResult) {
+
+		const songInformation = songInformationAndMetaData as ISongInformation;
+		const songMetaData = songInformationAndMetaData as ISongMetaData;
+
+		this.loadingOverlayService.showLoadingOverlay('Filling song template ...');
+
+		this.documentService.setDocumentData(songInformation, songMetaData);
+
+		this.setEditorValue(this.generateSongTemplateWithLyrics(songInformation, songMetaData));
+
+		this.loadingOverlayService.hideLoadingOverlay();
+	}
+
 	private setMonacoInstance() {
 
 		if (this.monacoEditor === undefined)
@@ -69,7 +84,7 @@ export class EditorService {
 			this.model = this.monacoEditor.editor?.getModels()[0];
 	}
 
-	private generateSongTemplateWithLyrics(songInformation: ISongInformation, songMetaData: ISongMetaData, songLyrics: string | null): string {
+	private generateSongTemplateWithLyrics(songInformation: ISongInformation, songMetaData: ISongMetaData, songLyrics?: string | null): string {
 
 		return [
 			`{title: ${songInformation.title}}`,
@@ -82,7 +97,7 @@ export class EditorService {
 			"{midi: PC0.0:0}",
 			"{keywords: English}",
 			"",
-			songLyrics ?? "",
+			songLyrics || "",
 		].join("\n");
 	}
 }

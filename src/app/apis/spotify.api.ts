@@ -1,5 +1,6 @@
+import { getChordsForKeyAndMode } from "../utils/chor.utils"
 import { ISongInformation, ISongMetaData } from "./api.results"
-import { getChordsForKeyAndMode, getDurationInMinAndSec } from "./utils"
+import { getDurationInMinAndSec } from "./utils"
 
 interface IToken {
     token: string,
