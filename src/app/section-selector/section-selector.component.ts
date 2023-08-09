@@ -87,6 +87,7 @@ export class SectionSelectorComponent {
 		setTimeout(() => {
 			this.editorService.getEditor().trigger('editor', 'acceptSelectedSuggestion', {});
 			this.editorService.getEditor().executeEdits("insert-preselected-text", [{ range: this.editorService.getEditor().getSelection(), text: selectedText, forceMoveMarkers: true }]);
+			this.editorService.getEditor().focus();
 		}, 100);
 	}
 }

@@ -5,30 +5,26 @@ import { MatListOption, MatSelectionListChange } from '@angular/material/list';
 import { MatDialogRef } from '@angular/material/dialog';
 import { IAutomaticDialogResult, IManualDialogResult } from '../interfaces/dialog.results';
 import { MatTabChangeEvent } from '@angular/material/tabs';
+import { getChordsByKeyAndMode } from '../utils/chord.utils';
 
 enum SongKey {
-	Aflat = 'Ab',
-	A = 'A',
-	Asharp = 'A#',
-	Bflat = 'Bb',
-	B = 'B',
-	C = 'C',
-	Csharp = 'C#',
-	Dflat = 'Db',
-	D = 'D',
-	Dsharp = 'D#',
-	Eflat = 'Eb',
-	E = 'E',
-	F = 'F',
-	Fsharp = 'F#',
-	Gflat = 'Gb',
-	G = 'G',
-	Gsharp = 'G#'
+	'A' = 9,
+	'A#/Bb' = 10,
+	'B' = 11,
+	'C' = 0,
+	'C#/Db' = 1,
+	'D' = 2,
+	'D#/EB' = 3,
+	'E' = 4,
+	'F' = 5,
+	'F#/Gb' = 6,
+	'G' = 7,
+	'G#/Ab' = 8
 }
 
 enum SongMode {
-	Major = 'Major',
-	Minor = 'Minor'
+	'Major' = 1,
+	'Minor' = 0
 }
 
 @Component({
@@ -53,8 +49,8 @@ export class NewDialogComponent {
 	songTempo: string = "";
 	songDuration: string = "";
 
-	keys: SongKey[] = Object.values(SongKey);
-	modes: SongMode[] = Object.values(SongMode);
+	keys: { name: string, value: string | SongKey }[] = Object.entries(SongKey).map(([name, value]) => ({ name, value })).filter((v) => isNaN(Number(v.name)));
+	modes: { name: string, value: string | SongMode }[] = Object.entries(SongMode).map(([name, value]) => ({ name, value })).filter((v) => isNaN(Number(v.name)));
 
 	searchResults: ISongInformation[] = [];
 
@@ -93,7 +89,7 @@ export class NewDialogComponent {
 			return;
 		}
 
-		const combinedKey = `${this.songKey}${this.songMode == SongMode.Minor ? 'm' : ''}`;
+		const chords = getChordsByKeyAndMode(this.songKey, this.songMode);
 
 		const manualDialogResult: IManualDialogResult = {
 			album: this.songAlbum,
@@ -101,10 +97,10 @@ export class NewDialogComponent {
 			title: this.songTitle,
 			bpm: Number(this.songTempo),
 			duration: this.songDuration,
-			key: combinedKey,
+			key: chords.length > 0 ? chords[0] : '',
 			timeSignature: this.songTime,
 			albumCoverImg: '',
-			chords: [],
+			chords,
 			releaseDateAlbum: new Date(),
 			spotifyLink: '',
 			spotifySongID: ''

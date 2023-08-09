@@ -40,5 +40,6 @@ export class InlinesSelectorComponent {
 		};
 
 		this.editorService.getEditor().executeEdits("insert-preselected-text-with-inline", [{ range: this.editorService.getEditor().getSelection(), text: textToInsert, forceMoveMarkers: true }]);
+		this.editorService.getEditor().focus();
 	}
 }

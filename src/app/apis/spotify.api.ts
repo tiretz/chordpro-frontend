@@ -1,4 +1,4 @@
-import { getChordsForKeyAndMode } from "../utils/chor.utils"
+import { getChordsByKeyAndMode } from "../utils/chord.utils"
 import { ISongInformation, ISongMetaData } from "./api.results"
 import { getDurationInMinAndSec } from "./utils"
 
@@ -100,7 +100,7 @@ export async function getSongMetaData(spotifySongID: string): Promise<ISongMetaD
         const responseDurationKeyBPM = await fetch(urlDurationKeyBPM, (<any>getRequestHeader(token!.token)));
         const objDurationKeyBPM = await responseDurationKeyBPM.json();
 
-        const chords: string[] = getChordsForKeyAndMode(objDurationKeyBPM.key, objDurationKeyBPM.mode);
+        const chords: string[] = getChordsByKeyAndMode(objDurationKeyBPM.key, objDurationKeyBPM.mode);
         const duration: string = getDurationInMinAndSec(objDurationKeyBPM.duration_ms);
 
         return {

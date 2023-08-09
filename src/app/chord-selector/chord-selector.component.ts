@@ -29,5 +29,6 @@ export class ChordSelectorComponent implements OnInit, OnDestroy {
 	insertChord(chord: string) {
 
 		this.editorService.getEditor().executeEdits("insert-chord", [{ range: this.editorService.getEditor().getSelection(), text: `[${chord}]`, forceMoveMarkers: true }]);
+		this.editorService.getEditor().focus();
 	}
 }
