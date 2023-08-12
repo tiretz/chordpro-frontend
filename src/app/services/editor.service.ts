@@ -4,6 +4,8 @@ import { ApiService } from './api.service';
 import { DocumentService } from './document.service';
 import { LoadingOverlayService } from './loading-overlay.service';
 import { IAutomaticDialogResult, IManualDialogResult } from '../interfaces/dialog.results';
+import { CommunicationService } from './communication.service';
+import { getChordsByKeyAndMode } from '../utils/chord.utils';
 
 @Injectable({
 	providedIn: 'root'
@@ -13,7 +15,10 @@ export class EditorService {
 	private editor: any | undefined;
 	private model: any | undefined;
 
-	constructor(private loadingOverlayService: LoadingOverlayService, private documentService: DocumentService, private apiService: ApiService) { }
+	constructor(private loadingOverlayService: LoadingOverlayService, private documentService: DocumentService, private apiService: ApiService, private communicationService: CommunicationService) {
+
+		this.onValueChange = this.onValueChange.bind(this);
+	}
 
 	initMonacoEditor(editor: any) {
 
@@ -162,6 +167,8 @@ export class EditorService {
 		this.model = editor.getModel();
 
 		monaco.editor.setModelLanguage(this.model, "chordpro");
+
+		this.model.onDidChangeContent(this.onValueChange);
 	}
 
 	getModel(): any {
@@ -178,6 +185,49 @@ export class EditorService {
 
 	setEditorValue(value: string) {
 		this.editor?.setValue(value);
+	}
+
+	onValueChange(event: any) {
+
+		const content = this.getEditorValue();
+
+		if (content == null)
+			return;
+
+		const regexMatches: IterableIterator<RegExpMatchArray> = content.matchAll(/\[(.*?)\]/g);
+		const matches: RegExpMatchArray[] = [...regexMatches];
+
+		if (matches.length === 0)
+			return;
+
+		const chordMap = new Map<string, number>();
+
+		for (const match of matches) {
+
+			const chord: string = match[1].toLowerCase();
+
+			if (chord === '')
+				continue;
+
+			chordMap.set(chord, (chordMap.get(chord) ?? 0) + 1);
+		}
+
+		const chordsSortedByOccurrence: string[] = [...chordMap.entries()].sort((a, b) => b[1] - a[1]).map(pair => pair[0]);
+
+		const finalChords: string[] = chordsSortedByOccurrence;
+
+		if (this.documentService.songMetaData != null) {
+
+			const keyChords: string[] = this.documentService.songMetaData.chords;
+
+			for (const chord of keyChords) {
+
+				if (finalChords.indexOf(chord) === -1)
+					finalChords.push(chord);
+			}
+		}
+
+		this.communicationService.updateChords(chordsSortedByOccurrence);
 	}
 
 	async initNewAutomaticSong(songInformation: IAutomaticDialogResult) {

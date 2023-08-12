@@ -6,11 +6,15 @@ import { Subject } from 'rxjs';
 })
 export class CommunicationService {
 
-	private initialChords = new Subject<string[]>();
+	private chords = new Subject<string[]>();
   
-	initialChords$ = this.initialChords.asObservable();
+	chords$ = this.chords.asObservable();
   
 	setInitialChords(initialChords: string[]) {
-		this.initialChords.next(initialChords);
+		this.chords.next(initialChords);
+	}
+
+	updateChords(chords: string[]) {
+		this.chords.next(chords);
 	}
 }

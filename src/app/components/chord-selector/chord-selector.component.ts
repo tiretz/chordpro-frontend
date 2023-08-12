@@ -21,7 +21,7 @@ export class ChordSelectorComponent implements OnInit, OnDestroy {
 	}
 
 	ngOnInit(): void {
-		this.initialChordsSubscription = this.communicationService.initialChords$.subscribe((chords) => {
+		this.initialChordsSubscription = this.communicationService.chords$.subscribe((chords) => {
 			this.chords = chords;
 		});
 	}
