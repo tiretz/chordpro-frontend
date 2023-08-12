@@ -5,7 +5,6 @@ import { DocumentService } from './document.service';
 import { LoadingOverlayService } from './loading-overlay.service';
 import { IAutomaticDialogResult, IManualDialogResult } from '../interfaces/dialog.results';
 import { CommunicationService } from './communication.service';
-import { getChordsByKeyAndMode } from '../utils/chord.utils';
 
 @Injectable({
 	providedIn: 'root'
