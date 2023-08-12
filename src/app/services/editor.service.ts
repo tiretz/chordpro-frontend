@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { ISongInformation, ISongMetaData } from './apis/api.results';
+import { ISongInformation, ISongMetaData } from '../apis/api.results';
 import { ApiService } from './api.service';
 import { DocumentService } from './document.service';
 import { LoadingOverlayService } from './loading-overlay.service';
-import { IAutomaticDialogResult, IManualDialogResult } from './interfaces/dialog.results';
+import { IAutomaticDialogResult, IManualDialogResult } from '../interfaces/dialog.results';
 
 @Injectable({
 	providedIn: 'root'

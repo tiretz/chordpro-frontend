@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { EditorService } from '../editor.service';
+import { EditorService } from 'src/app/services/editor.service';
 
 export enum InlineType {
 	Square_brackets = '[]',

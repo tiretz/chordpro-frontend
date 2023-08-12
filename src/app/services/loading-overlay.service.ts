@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { LoadingOverlayComponent } from './loading-overlay/loading-overlay.component';
+import { LoadingOverlayComponent } from '../components/loading-overlay/loading-overlay.component';
 
 @Injectable({
 	providedIn: 'root'

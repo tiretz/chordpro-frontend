@@ -3,16 +3,16 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
-import { BodyComponent } from './body/body.component';
-import { EditorComponent } from './editor/editor.component';
-import { NewDialogComponent } from './new-dialog/new-dialog.component';
-import { FooterComponent } from './footer/footer.component';
-import { OverrideDialogComponent } from './override-dialog/override-dialog.component';
-import { ChordSelectorComponent } from './chord-selector/chord-selector.component';
-import { LoadingOverlayComponent } from './loading-overlay/loading-overlay.component';
-import { SectionSelectorComponent } from './section-selector/section-selector.component';
-import { InlinesSelectorComponent } from './inlines-selector/inlines-selector.component';
+import { HeaderComponent } from './components/header/header.component';
+import { BodyComponent } from './components/body/body.component';
+import { EditorComponent } from './components/editor/editor.component';
+import { NewDialogComponent } from './components/new-dialog/new-dialog.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { OverrideDialogComponent } from './components/override-dialog/override-dialog.component';
+import { ChordSelectorComponent } from './components/chord-selector/chord-selector.component';
+import { LoadingOverlayComponent } from './components/loading-overlay/loading-overlay.component';
+import { SectionSelectorComponent } from './components/section-selector/section-selector.component';
+import { InlinesSelectorComponent } from './components/inlines-selector/inlines-selector.component';
 
 import { MonacoEditorModule, NgxMonacoEditorConfig } from 'ngx-monaco-editor-v2';
 

@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { CommunicationService } from '../communication.service';
 import { Subscription } from 'rxjs';
-import { EditorService } from '../editor.service';
+import { CommunicationService } from 'src/app/services/communication.service';
+import { EditorService } from 'src/app/services/editor.service';
 
 @Component({
 	selector: 'app-chord-selector',

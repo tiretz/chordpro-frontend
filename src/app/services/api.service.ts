@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { ISongInformation, ISongMetaData } from './apis/api.results';
-import { getSongInformation, getSongMetaData } from './apis/spotify.api';
-import { getLyricsByTitleAndOrArtist } from './apis/genius.api';
+import { ISongInformation, ISongMetaData } from '../apis/api.results';
+import { getSongInformation, getSongMetaData } from '../apis/spotify.api';
+import { getLyricsByTitleAndOrArtist } from '../apis/genius.api';
 
 @Injectable({
 	providedIn: 'root'

@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { NewDialogComponent } from '../new-dialog/new-dialog.component';
-import { EditorService } from '../editor.service';
 import { OverrideDialogComponent, OverrideDialogModel } from '../override-dialog/override-dialog.component';
 import { firstValueFrom } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
-import { DocumentService } from '../document.service';
-import { IAutomaticDialogResult, IManualDialogResult } from '../interfaces/dialog.results';
+import { EditorService } from 'src/app/services/editor.service';
+import { DocumentService } from 'src/app/services/document.service';
+import { IAutomaticDialogResult, IManualDialogResult } from 'src/app/interfaces/dialog.results';
 
 @Component({
 	selector: 'app-header',

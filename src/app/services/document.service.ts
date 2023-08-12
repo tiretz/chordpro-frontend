@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ISongInformation, ISongMetaData } from './apis/api.results';
+import { ISongInformation, ISongMetaData } from '../apis/api.results';
 import { CommunicationService } from './communication.service';
 
 @Injectable({

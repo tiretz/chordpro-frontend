@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { ApiService } from '../api.service';
-import { ISongInformation } from '../apis/api.results';
 import { MatListOption, MatSelectionListChange } from '@angular/material/list';
 import { MatDialogRef } from '@angular/material/dialog';
-import { IAutomaticDialogResult, IManualDialogResult } from '../interfaces/dialog.results';
 import { MatTabChangeEvent } from '@angular/material/tabs';
-import { getChordsByKeyAndMode } from '../utils/chord.utils';
+import { ApiService } from 'src/app/services/api.service';
+import { ISongInformation } from 'src/app/apis/api.results';
+import { IAutomaticDialogResult, IManualDialogResult } from 'src/app/interfaces/dialog.results';
+import { getChordsByKeyAndMode } from 'src/app/utils/chord.utils';
 
 enum SongKey {
 	'A' = 9,
