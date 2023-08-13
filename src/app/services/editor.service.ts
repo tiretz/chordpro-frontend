@@ -5,6 +5,7 @@ import { DocumentService } from './document.service';
 import { LoadingOverlayService } from './loading-overlay.service';
 import { IAutomaticDialogResult, IManualDialogResult } from '../interfaces/dialog.results';
 import { CommunicationService } from './communication.service';
+import { adaptLyrics } from '../utils/utils';
 
 @Injectable({
 	providedIn: 'root'
@@ -199,7 +200,7 @@ export class EditorService {
 		if (matches.length === 0)
 			return;
 
-		const chordMap = new Map<string, number>();
+		const chordMap = new Map<string, { chord: string, occurence: number }>();
 
 		for (const match of matches) {
 
@@ -208,10 +209,10 @@ export class EditorService {
 			if (chord === '')
 				continue;
 
-			chordMap.set(chord, (chordMap.get(chord) ?? 0) + 1);
+			chordMap.set(chord, { chord: match[1], occurence: (chordMap.get(chord)?.occurence ?? 0) + 1 });
 		}
 
-		const chordsSortedByOccurrence: string[] = [...chordMap.entries()].sort((a, b) => b[1] - a[1]).map(pair => pair[0]);
+		const chordsSortedByOccurrence: string[] = [...chordMap.entries()].sort((a, b) => b[1].occurence - a[1].occurence).map(pair => pair[1].chord);
 
 		const finalChords: string[] = chordsSortedByOccurrence;
 
@@ -272,7 +273,7 @@ export class EditorService {
 			"{midi: PC0.0:0}",
 			"{keywords: English}",
 			"",
-			songInfo.lyrics || "",
+			adaptLyrics(songInfo.lyrics) || "",
 		].join("\n");
 	}
 }
