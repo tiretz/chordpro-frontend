@@ -1,22 +1,20 @@
 import { Injectable } from '@angular/core';
-import { ISongInformation, ISongMetaData } from '../apis/api.results';
-import { getSongInformation, getSongMetaData } from '../apis/spotify.api';
-import { getLyricsByTitleAndOrArtist } from '../apis/genius.api';
+import { ITrackInfo, ISong } from '../apis/api.results';
+import { HttpClient } from '@angular/common/http';
+import { firstValueFrom } from 'rxjs';
 
 @Injectable({
 	providedIn: 'root'
 })
 export class ApiService {
 
-	async getSearchResults(songTitle: string, songArtists: string): Promise<ISongInformation[]> {
-		return await getSongInformation(songTitle, songArtists);
+	constructor (private http: HttpClient) { }
+
+	async getSongs(songTitle: string, songArtists: string): Promise<ITrackInfo[]> {
+		return await firstValueFrom(this.http.get<ITrackInfo[]>("http://localhost:5001/songs/", { params: { "title": songTitle, "artists": songArtists } }));
 	}
 
-	async getSongMetaData(songInformation: ISongInformation): Promise<ISongMetaData | null> {
-		return await getSongMetaData(songInformation.spotifySongID);
-	}
-
-	async getSongLyrics(songInformation: ISongInformation): Promise<string | null> {
-		return await getLyricsByTitleAndOrArtist(`${songInformation.title} ${songInformation.artists.join(', ')}`.trim());
+	async getSongInfo(songId: string): Promise<ISong> {
+		return await firstValueFrom(this.http.get<ISong>(`http://localhost:5001/songs/${songId}`));
 	}
 }

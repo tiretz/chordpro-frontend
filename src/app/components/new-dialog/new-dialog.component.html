@@ -33,7 +33,7 @@
                     <mat-divider *ngIf="searchResults.length > 0"></mat-divider>
                     <mat-selection-list #songs role="list" [multiple]="false" [hideSingleSelectionIndicator]="true" *ngIf="searchResults.length > 0" style="width: 100%;" (selectionChange)="onSongSelected($event, songs.selectedOptions.selected)">
                         <mat-list-option role="listitem" *ngFor="let searchResult of searchResults" [value]="searchResult" style="margin-bottom: 10px; background-color: rgba(255, 255, 255, 0.04);">
-                            <img matListItemAvatar [src]="searchResult.albumCoverImg" alt="" style="border-radius: 0px; margin-top: 0px; margin-left: 0px; width: 72px; height: 72px;">
+                            <img matListItemAvatar [src]="searchResult.albumCoverUrl" alt="" style="border-radius: 0px; margin-top: 0px; margin-left: 0px; width: 72px; height: 72px;">
                             <div matListItemTitle>{{ searchResult.title }}</div>
                             <div matListItemLine>{{ searchResult.artists.join(', ') }}</div>
                         </mat-list-option>
@@ -85,19 +85,19 @@
                     <mat-grid-tile colspan="1">
                         <mat-form-field class="full-width">
                             <mat-label>Tempo</mat-label>
-                            <input matInput placeholder="[d]dd" [(ngModel)]="songTempo" mask="900">
+                            <input matInput placeholder="[d]dd" [(ngModel)]="songTempo" mask="900" [dropSpecialCharacters]="false">
                         </mat-form-field>
                     </mat-grid-tile>
                     <mat-grid-tile colspan="1">
                         <mat-form-field class="full-width">
                             <mat-label>Duration</mat-label>
-                            <input matInput placeholder="mm:ss" [(ngModel)]="songDuration" mask="m0:s0">
+                            <input matInput placeholder="mm:ss" [(ngModel)]="songDuration" mask="m0:s0" [dropSpecialCharacters]="false">
                         </mat-form-field>
                     </mat-grid-tile>
                     <mat-grid-tile colspan="2">
                         <mat-form-field class="full-width">
                             <mat-label>Time</mat-label>
-                            <input matInput placeholder="d/d" [(ngModel)]="songTime" mask="0/0">
+                            <input matInput placeholder="d/d" [(ngModel)]="songTime" mask="0/0" [dropSpecialCharacters]="false">
                         </mat-form-field>
                     </mat-grid-tile>
                 </mat-grid-list>

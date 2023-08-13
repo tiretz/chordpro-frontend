@@ -1,23 +1,24 @@
-export interface ISongInformation {
-
-    title: string;
+export interface ITrackInfo {
+    albumName: string;
+    albumCoverUrl: string;
+    albumReleaseDate: Date;
     artists: string[];
-    album: string;
-    releaseDateAlbum: Date;
-    albumCoverImg: string;
-    spotifySongID: string;
-    spotifyLink: string;
+    id: string;
+    spotifyUrl: string;
+    title: string;
 }
 
-export interface ISongMetaData {
-    key: string;
+export interface ITrackMetaInfo {
     chords: string[];
-    bpm: number;
     duration: string;
+    key: string;
+    mode: number;
+    tempo: string;
     timeSignature: string;
 }
 
-export interface IGeniusSongData {
-    id: number;
-    views: number;
+export interface ITrackLyrics {
+    lyrics: string;
 }
+
+export interface ISong extends ITrackInfo, ITrackMetaInfo, ITrackLyrics { }

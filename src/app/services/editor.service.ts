@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ISongInformation, ISongMetaData } from '../apis/api.results';
+import { ISong } from '../apis/api.results';
 import { ApiService } from './api.service';
 import { DocumentService } from './document.service';
 import { LoadingOverlayService } from './loading-overlay.service';
@@ -215,10 +215,9 @@ export class EditorService {
 
 		const finalChords: string[] = chordsSortedByOccurrence;
 
-		if (this.documentService.songMetaData != null) {
+		const keyChords: string[] | undefined = this.documentService.songInfo?.chords;
 
-			const keyChords: string[] = this.documentService.songMetaData.chords;
-
+		if (keyChords) {
 			for (const chord of keyChords) {
 
 				if (finalChords.indexOf(chord) === -1)
@@ -231,54 +230,49 @@ export class EditorService {
 
 	async initNewAutomaticSong(songInformation: IAutomaticDialogResult) {
 
-		this.loadingOverlayService.showLoadingOverlay('Query song meta data ...');
+		this.loadingOverlayService.showLoadingOverlay('Query song data ...');
 
-		const songMetaData: ISongMetaData | null = await this.apiService.getSongMetaData(songInformation);
+		const songInfo: ISong = await this.apiService.getSongInfo(songInformation.id);
 
-		if (songMetaData === null)
+		if (songInfo === null)
 			return;
-
-		this.loadingOverlayService.updateLoadingOverlayMessage('Query song lyrics ...');
-
-		const songLyrics: string | null = await this.apiService.getSongLyrics(songInformation);
 
 		this.loadingOverlayService.updateLoadingOverlayMessage('Filling song template ...');
 
-		this.documentService.setDocumentData(songInformation, songMetaData, songLyrics);
+		this.documentService.setDocumentData(songInfo);
 
-		this.setEditorValue(this.generateSongTemplateWithLyrics(songInformation, songMetaData, songLyrics));
+		this.setEditorValue(this.generateSongTemplateWithLyrics(songInfo));
 
 		this.loadingOverlayService.hideLoadingOverlay();
 	}
 
 	initNewManualSong(songInformationAndMetaData: IManualDialogResult) {
 
-		const songInformation = songInformationAndMetaData as ISongInformation;
-		const songMetaData = songInformationAndMetaData as ISongMetaData;
+		const songInfo = songInformationAndMetaData as ISong;
 
 		this.loadingOverlayService.showLoadingOverlay('Filling song template ...');
 
-		this.documentService.setDocumentData(songInformation, songMetaData);
+		this.documentService.setDocumentData(songInfo);
 
-		this.setEditorValue(this.generateSongTemplateWithLyrics(songInformation, songMetaData));
+		this.setEditorValue(this.generateSongTemplateWithLyrics(songInfo));
 
 		this.loadingOverlayService.hideLoadingOverlay();
 	}
 
-	private generateSongTemplateWithLyrics(songInformation: ISongInformation, songMetaData: ISongMetaData, songLyrics?: string | null): string {
+	private generateSongTemplateWithLyrics(songInfo: ISong): string {
 
 		return [
-			`{title: ${songInformation.title}}`,
-			`{artist: ${songInformation.artists.join(', ')}}`,
-			`{album: ${songInformation.album}}`,
-			`{key: ${songMetaData.key}}`,
-			`{tempo: ${songMetaData.bpm.toFixed(0)}}`,
-			`{time: ${songMetaData.timeSignature}}`,
-			`{duration: ${songMetaData.duration}}`,
+			`{title: ${songInfo.title}}`,
+			`{artist: ${songInfo.artists.join(', ')}}`,
+			`{album: ${songInfo.albumName}}`,
+			`{key: ${songInfo.key}}`,
+			`{tempo: ${Number(songInfo.tempo).toFixed(0)}}`,
+			`{time: ${songInfo.timeSignature}}`,
+			`{duration: ${songInfo.duration}}`,
 			"{midi: PC0.0:0}",
 			"{keywords: English}",
 			"",
-			songLyrics || "",
+			songInfo.lyrics || "",
 		].join("\n");
 	}
 }

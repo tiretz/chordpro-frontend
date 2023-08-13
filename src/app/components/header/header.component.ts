@@ -66,7 +66,7 @@ export class HeaderComponent {
 	}
 
 	onDownloadButtonClick() {
-		this.downloadFile(`${this.documentService.songInformation?.artists.join(', ')} - ${this.documentService.songInformation?.title}.chopro`, this.editorService.getEditorValue() || '');
+		this.downloadFile(`${this.documentService.songInfo?.artists.join(', ')} - ${this.documentService.songInfo?.title}.chopro`, this.editorService.getEditorValue() || '');
 	}
 
 	downloadFile(filename: string, text: string) {

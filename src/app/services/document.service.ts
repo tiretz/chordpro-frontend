@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ISongInformation, ISongMetaData } from '../apis/api.results';
+import { ISong } from '../apis/api.results';
 import { CommunicationService } from './communication.service';
 
 @Injectable({
@@ -7,18 +7,14 @@ import { CommunicationService } from './communication.service';
 })
 export class DocumentService {
 
-	songInformation: ISongInformation | null = null;
-	songMetaData: ISongMetaData | null = null;
-	songLyrics: string | null | null = null;
+	songInfo: ISong | null = null;
 
 	constructor(private communicationService: CommunicationService) { }
 
-	setDocumentData(songInformation: ISongInformation, songMetaData: ISongMetaData, songLyrics?: string | null) {
+	setDocumentData(songInformation: ISong) {
 
-		this.songInformation = songInformation;
-		this.songMetaData = songMetaData;
-		this.songLyrics = songLyrics || null;
+		this.songInfo = songInformation;
 
-		this.communicationService.setInitialChords(this.songMetaData.chords);
+		this.communicationService.setInitialChords(this.songInfo.chords);
 	}
 }

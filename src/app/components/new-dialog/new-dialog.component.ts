@@ -3,9 +3,9 @@ import { MatListOption, MatSelectionListChange } from '@angular/material/list';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatTabChangeEvent } from '@angular/material/tabs';
 import { ApiService } from 'src/app/services/api.service';
-import { ISongInformation } from 'src/app/apis/api.results';
 import { IAutomaticDialogResult, IManualDialogResult } from 'src/app/interfaces/dialog.results';
-import { getChordsByKeyAndMode } from 'src/app/utils/chord.utils';
+import { ITrackInfo } from 'src/app/apis/api.results';
+import { getChordsByKeyAndMode } from 'src/app/utils/utils';
 
 enum SongKey {
 	'A' = 9,
@@ -52,9 +52,9 @@ export class NewDialogComponent {
 	keys: { name: string, value: string | SongKey }[] = Object.entries(SongKey).map(([name, value]) => ({ name, value })).filter((v) => isNaN(Number(v.name)));
 	modes: { name: string, value: string | SongMode }[] = Object.entries(SongMode).map(([name, value]) => ({ name, value })).filter((v) => isNaN(Number(v.name)));
 
-	searchResults: ISongInformation[] = [];
+	searchResults: ITrackInfo[] = [];
 
-	private selectedSong: ISongInformation | undefined;
+	private selectedSong: ITrackInfo | undefined;
 
 	constructor(private dialogRef: MatDialogRef<NewDialogComponent>, private apiService: ApiService) {}
 
@@ -92,24 +92,25 @@ export class NewDialogComponent {
 		const chords = getChordsByKeyAndMode(this.songKey, this.songMode);
 
 		const manualDialogResult: IManualDialogResult = {
-			album: this.songAlbum,
+			albumName: this.songAlbum,
 			artists: [ this.songArtists ],
 			title: this.songTitle,
-			bpm: Number(this.songTempo),
+			tempo: this.songTempo,
 			duration: this.songDuration,
 			key: chords.length > 0 ? chords[0] : '',
 			timeSignature: this.songTime,
-			albumCoverImg: '',
+			albumCoverUrl: '',
 			chords,
-			releaseDateAlbum: new Date(),
-			spotifyLink: '',
-			spotifySongID: ''
+			albumReleaseDate: new Date(),
+			spotifyUrl: '',
+			id: '',
+			mode: this.songMode,
 		};
 
 		this.dialogRef.close(manualDialogResult);
 	}
 
 	async querySongSearch() {
-		this.searchResults = await this.apiService.getSearchResults(this.songTitleToSearch, this.songArtistsToSearch);
+		this.searchResults = await this.apiService.getSongs(this.songTitleToSearch, this.songArtistsToSearch);
 	}
 }

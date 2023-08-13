@@ -1,5 +1,5 @@
-import { ISongInformation, ISongMetaData } from "../apis/api.results";
+import { ITrackInfo, ITrackMetaInfo } from "../apis/api.results";
 
-export interface IAutomaticDialogResult extends ISongInformation { }
+export interface IAutomaticDialogResult extends ITrackInfo { }
 
-export interface IManualDialogResult extends ISongInformation, ISongMetaData { }
+export interface IManualDialogResult extends ITrackInfo, ITrackMetaInfo { }
