@@ -265,7 +265,7 @@ export class EditorService {
 			`{title: ${songInfo.title}}`,
 			`{artist: ${songInfo.artists.join(', ')}}`,
 			`{album: ${songInfo.albumName}}`,
-			`{key: ${songInfo.key}}`,
+			`{key: ${songInfo.chords[0]}}`,
 			`{tempo: ${Number(songInfo.tempo).toFixed(0)}}`,
 			`{time: ${songInfo.timeSignature}}`,
 			`{duration: ${songInfo.duration}}`,
