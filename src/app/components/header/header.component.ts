@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { EditorService } from 'src/app/services/editor.service';
 import { DocumentService } from 'src/app/services/document.service';
 import { IAutomaticDialogResult, IManualDialogResult } from 'src/app/interfaces/dialog.results';
+import { saveFile } from 'src/app/utils/download.utils';
 
 @Component({
 	selector: 'app-header',
@@ -65,22 +66,7 @@ export class HeaderComponent {
 		});
 	}
 
-	onDownloadButtonClick() {
-		this.downloadFile(`${this.documentService.songInfo?.artists.join(', ')} - ${this.documentService.songInfo?.title}.chopro`, this.editorService.getEditorValue() || '');
-	}
-
-	downloadFile(filename: string, text: string) {
-
-		// Create dummy element
-		const element = document.createElement('a');
-		element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
-		element.setAttribute('download', filename);
-	  
-		element.style.display = 'none';
-		document.body.appendChild(element);
-	  
-		element.click();
-	  
-		document.body.removeChild(element);
+	async onDownloadButtonClick() {
+		await saveFile(this.editorService.getEditorValue() || '', `${this.documentService.songInfo?.artists.join(', ') || 'Artist'} - ${this.documentService.songInfo?.title || 'Title'}.chopro`);
 	}
 }

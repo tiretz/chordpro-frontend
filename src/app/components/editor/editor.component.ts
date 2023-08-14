@@ -12,7 +12,28 @@ export class EditorComponent {
 
 	constructor (private editorService: EditorService) { }
 
-	onMonacoEditorInit(editor: any) {
+	onDropAreaDragOver(event: DragEvent): void {
+
+		event.stopImmediatePropagation();
+		event.preventDefault();
+
+		if (event.dataTransfer)
+			event.dataTransfer.dropEffect = 'copy';
+	}
+
+	async onDropAreaDrop(event: DragEvent): Promise<void> {
+
+		event.stopImmediatePropagation();
+		event.preventDefault();
+
+		if (event.dataTransfer && event.dataTransfer.files.length > 0 && event.dataTransfer.files[0].name.toLowerCase().endsWith(".chopro")) {
+
+			const file = event.dataTransfer.files[0];
+			this.editorService.setEditorValue(await file.text());
+		}
+	}
+
+	onMonacoEditorInit(editor: any): void {
 		this.editorService.initMonacoEditor(editor);
 	}
 }
