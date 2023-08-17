@@ -12,7 +12,7 @@
     text-align: center;
 }
 
-:host /deep/ .mat-drawer-inner-container {
+.mat-drawer-inner-container {
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
