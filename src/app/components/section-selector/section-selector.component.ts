@@ -2,15 +2,16 @@ import { Component } from '@angular/core';
 import { EditorService } from 'src/app/services/editor.service';
 
 export enum SectionType {
-	Intro = 'Intro',
-	Chorus = 'Chorus',
-	Verse_1 = 'Verse 1',
-	Verse_2 = 'Verse 2',
-	Verse_3 = 'Verse 3',
-	Bridge = 'Bridge',
-	Instrumental = 'Instrumental',
-	Solo = 'Solo',
-	Outro= 'Outro'
+	Intro			= 'Intro',
+	Chorus			= 'Chorus',
+	Verse_1			= 'Verse 1',
+	Verse_2			= 'Verse 2',
+	Verse_3			= 'Verse 3',
+	Bridge			= 'Bridge',
+	Instrumental	= 'Instrumental',
+	Solo			= 'Solo',
+	Outro			= 'Outro',
+	Comment			= 'Comment',
 }
 
 @Component({
@@ -29,7 +30,8 @@ export class SectionSelectorComponent {
 		SectionType.Verse_3,
 		SectionType.Instrumental,
 		SectionType.Solo,
-		SectionType.Outro
+		SectionType.Outro,
+		SectionType.Comment,
 	];
 
 	constructor(private editorService: EditorService) { }
@@ -75,6 +77,10 @@ export class SectionSelectorComponent {
 
 			case SectionType.Outro:
 				snippet = 'outro';
+				break;
+
+			case SectionType.Comment:
+				snippet = 'comment';
 				break;
 			
 			default:

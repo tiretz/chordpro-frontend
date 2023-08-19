@@ -142,9 +142,11 @@ export class EditorService {
 					{ label: "end_of_tab", kind: monaco.languages.CompletionItemKind.Text, insertText: ["{end_of_tab}", ""].join("\n"), documentation: "End of tab.", range: range },
 
 					// Custom sections
-					{ label: "intro", kind: monaco.languages.CompletionItemKind.Snippet, insertText: ["{sop: Intro}", "$0", "{eop}", ""].join("\n"), insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet, documentation: "Start of intro part.", range: range },
-					{ label: "outro", kind: monaco.languages.CompletionItemKind.Snippet, insertText: ["{sop: Outro}", "$0", "{eop}"].join("\n"), insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet, documentation: "Start of outro part.", range: range },
-					{ label: "instrumental", kind: monaco.languages.CompletionItemKind.Snippet, insertText: ["{sop: Instrumental}", "$0", "{eop}", ""].join("\n"), insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet, documentation: "Start of instrumental part.", range: range },
+					{ label: "intro", kind: monaco.languages.CompletionItemKind.Snippet, insertText: ["{sop: Intro}", "$0", "{eop}", ""].join("\n"), insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet, documentation: "Insert intro section.", range: range },
+					{ label: "outro", kind: monaco.languages.CompletionItemKind.Snippet, insertText: ["{sop: Outro}", "$0", "{eop}"].join("\n"), insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet, documentation: "Insert outro section.", range: range },
+					{ label: "instrumental", kind: monaco.languages.CompletionItemKind.Snippet, insertText: ["{sop: Instrumental}", "$0", "{eop}", ""].join("\n"), insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet, documentation: "Insert instrumental section.", range: range },
+					{ label: "solo", kind: monaco.languages.CompletionItemKind.Snippet, insertText: ["{sop: Solo}", "$0", "{eop}", ""].join("\n"), insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet, documentation: "Insert solo section.", range: range },
+					{ label: "comment", kind: monaco.languages.CompletionItemKind.Snippet, insertText: "{c: $0}", insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet, documentation: "Insert comment.", range: range },
 				];
 				return { suggestions: suggestions };
 			},
