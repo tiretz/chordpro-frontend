@@ -7,11 +7,15 @@ export enum SectionType {
 	Verse_1			= 'Verse 1',
 	Verse_2			= 'Verse 2',
 	Verse_3			= 'Verse 3',
+	Verse_4			= 'Verse 4',
+	Verse_5			= 'Verse 5',
 	Bridge			= 'Bridge',
 	Instrumental	= 'Instrumental',
 	Solo			= 'Solo',
 	Outro			= 'Outro',
 	Comment			= 'Comment',
+	Pre_Chorus		= 'Pre-Chorus',
+	Post_Chorus		= 'Post-Chorus',
 }
 
 @Component({
@@ -28,6 +32,10 @@ export class SectionSelectorComponent {
 		SectionType.Verse_2,
 		SectionType.Bridge,
 		SectionType.Verse_3,
+		SectionType.Pre_Chorus,
+		SectionType.Verse_4,
+		SectionType.Post_Chorus,
+		SectionType.Verse_5,
 		SectionType.Instrumental,
 		SectionType.Solo,
 		SectionType.Outro,
@@ -47,20 +55,36 @@ export class SectionSelectorComponent {
 				snippet = 'intro';
 				break;
 			
+			case SectionType.Pre_Chorus:
+				snippet = 'pre_chorus';
+				break;
+			
 			case SectionType.Chorus:
 				snippet = 'chorus';
 				break;
+			
+			case SectionType.Post_Chorus:
+				snippet = 'post_chorus';
+				break;
 
 			case SectionType.Verse_1:
-				snippet = 'verse1';
+				snippet = 'verse_1';
 				break;
 
 			case SectionType.Verse_2:
-				snippet = 'verse2';
+				snippet = 'verse_2';
 				break;
 
 			case SectionType.Verse_3:
-				snippet = 'verse3';
+				snippet = 'verse_3';
+				break;
+
+			case SectionType.Verse_4:
+				snippet = 'verse_4';
+				break;
+
+			case SectionType.Verse_5:
+				snippet = 'verse_5';
 				break;
 
 			case SectionType.Bridge:

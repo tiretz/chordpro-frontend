@@ -104,48 +104,52 @@ export class EditorService {
 				};
 				var suggestions = [
 					// Chorus
-					{ label: "chorus", kind: monaco.languages.CompletionItemKind.Snippet, insertText: ["{soc: Chorus}", "$0", "{eoc}", ""].join("\n"), insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet, documentation: "Chorus snipped.", range: range },
+					{ label: "chorus", kind: monaco.languages.CompletionItemKind.Snippet, insertText: ["{soc: Chorus}", "$0", "{eoc}"].join("\n"), insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet, documentation: "Chorus snipped.", range: range },
 					{ label: "soc", kind: monaco.languages.CompletionItemKind.Snippet, insertText: ["{soc: Chorus}", "$0"].join("\n"), insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet, documentation: "Start of chorus.", range: range },
-					{ label: "eoc", kind: monaco.languages.CompletionItemKind.Text, insertText: ["{eoc}", ""].join("\n"), documentation: "End of chorus.", range: range },
+					{ label: "eoc", kind: monaco.languages.CompletionItemKind.Text, insertText: ["{eoc}"].join("\n"), documentation: "End of chorus.", range: range },
 					{ label: "start_of_chorus", kind: monaco.languages.CompletionItemKind.Snippet, insertText: ["{start_of_chorus: Chorus}", "$0"].join("\n"), insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet, documentation: "Start of chorus.", range: range },
-					{ label: "end_of_chorus", kind: monaco.languages.CompletionItemKind.Text, insertText: ["{end_of_chorus}", ""].join("\n"), documentation: "End of chorus.", range: range },
+					{ label: "end_of_chorus", kind: monaco.languages.CompletionItemKind.Text, insertText: ["{end_of_chorus}"].join("\n"), documentation: "End of chorus.", range: range },
 
 					// Verse
-					{ label: "verse", kind: monaco.languages.CompletionItemKind.Snippet, insertText: ["{sov: Verse $0}", "", "{eov}", ""].join("\n"), insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet, documentation: "Verse snipped.", range: range },
-					{ label: "verse1", kind: monaco.languages.CompletionItemKind.Snippet, insertText: ["{sov: Verse 1}", "$0", "{eov}", ""].join("\n"), insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet, documentation: "Verse 1 snipped.", range: range },
-					{ label: "verse2", kind: monaco.languages.CompletionItemKind.Snippet, insertText: ["{sov: Verse 2}", "$0", "{eov}", ""].join("\n"), insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet, documentation: "Verse 2 snipped.", range: range },
-					{ label: "verse3", kind: monaco.languages.CompletionItemKind.Snippet, insertText: ["{sov: Verse 3}", "$0", "{eov}", ""].join("\n"), insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet, documentation: "Verse 3 snipped.", range: range },
-					{ label: "sov", kind: monaco.languages.CompletionItemKind.Snippet, insertText: ["{sov: Verse $0}", ""].join("\n"), insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet, documentation: "Start of verse.", range: range },
-					{ label: "eov", kind: monaco.languages.CompletionItemKind.Text, insertText: ["{eov}", ""].join("\n"), documentation: "End of verse.", range: range },
-					{ label: "start_of_verse", kind: monaco.languages.CompletionItemKind.Snippet, insertText: ["{start_of_verse: Verse $0}", ""].join("\n"), insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet, documentation: "Start of verse.", range: range },
-					{ label: "end_of_verse", kind: monaco.languages.CompletionItemKind.Text, insertText: ["{end_of_verse}", ""].join("\n"), documentation: "End of verse.", range: range },
+					{ label: "verse", kind: monaco.languages.CompletionItemKind.Snippet, insertText: ["{sov: Verse $0}", "", "{eov}"].join("\n"), insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet, documentation: "Verse snipped.", range: range },
+					{ label: "verse_1", kind: monaco.languages.CompletionItemKind.Snippet, insertText: ["{sov: Verse 1}", "$0", "{eov}"].join("\n"), insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet, documentation: "Verse 1 snipped.", range: range },
+					{ label: "verse_2", kind: monaco.languages.CompletionItemKind.Snippet, insertText: ["{sov: Verse 2}", "$0", "{eov}"].join("\n"), insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet, documentation: "Verse 2 snipped.", range: range },
+					{ label: "verse_3", kind: monaco.languages.CompletionItemKind.Snippet, insertText: ["{sov: Verse 3}", "$0", "{eov}"].join("\n"), insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet, documentation: "Verse 3 snipped.", range: range },
+					{ label: "verse_4", kind: monaco.languages.CompletionItemKind.Snippet, insertText: ["{sov: Verse 4}", "$0", "{eov}"].join("\n"), insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet, documentation: "Verse 4 snipped.", range: range },
+					{ label: "verse_5", kind: monaco.languages.CompletionItemKind.Snippet, insertText: ["{sov: Verse 5}", "$0", "{eov}"].join("\n"), insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet, documentation: "Verse 5 snipped.", range: range },
+					{ label: "sov", kind: monaco.languages.CompletionItemKind.Snippet, insertText: ["{sov: Verse $0}"].join("\n"), insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet, documentation: "Start of verse.", range: range },
+					{ label: "eov", kind: monaco.languages.CompletionItemKind.Text, insertText: ["{eov}"].join("\n"), documentation: "End of verse.", range: range },
+					{ label: "start_of_verse", kind: monaco.languages.CompletionItemKind.Snippet, insertText: ["{start_of_verse: Verse $0}"].join("\n"), insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet, documentation: "Start of verse.", range: range },
+					{ label: "end_of_verse", kind: monaco.languages.CompletionItemKind.Text, insertText: ["{end_of_verse}"].join("\n"), documentation: "End of verse.", range: range },
 
 					// Bridge
-					{ label: "bridge", kind: monaco.languages.CompletionItemKind.Snippet, insertText: ["{sob: Bridge}", "$0", "{eob}", ""].join("\n"), insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet, documentation: "Bridge snipped.", range: range },
+					{ label: "bridge", kind: monaco.languages.CompletionItemKind.Snippet, insertText: ["{sob: Bridge}", "$0", "{eob}"].join("\n"), insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet, documentation: "Bridge snipped.", range: range },
 					{ label: "sob", kind: monaco.languages.CompletionItemKind.Snippet, insertText: ["{sob: Bridge}", "$0"].join("\n"), insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet, documentation: "Start of bridge.", range: range },
-					{ label: "eob", kind: monaco.languages.CompletionItemKind.Text, insertText: ["{eob}", ""].join("\n"), documentation: "End of bridge.", range: range },
+					{ label: "eob", kind: monaco.languages.CompletionItemKind.Text, insertText: ["{eob}"].join("\n"), documentation: "End of bridge.", range: range },
 					{ label: "start_of_bridge", kind: monaco.languages.CompletionItemKind.Snippet, insertText: ["{start_of_bridge: Bridge}", "$0"].join("\n"), insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet, documentation: "Start of bridge.", range: range },
-					{ label: "end_of_bridge", kind: monaco.languages.CompletionItemKind.Text, insertText: ["{end_of_bridge}", ""].join("\n"), documentation: "End of bridge.", range: range },
+					{ label: "end_of_bridge", kind: monaco.languages.CompletionItemKind.Text, insertText: ["{end_of_bridge}"].join("\n"), documentation: "End of bridge.", range: range },
 
 					// Part
-					{ label: "part", kind: monaco.languages.CompletionItemKind.Snippet, insertText: ["{sop: $0}", "", "{eop}", ""].join("\n"), insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet, documentation: "Part snipped.", range: range },
-					{ label: "sop", kind: monaco.languages.CompletionItemKind.Snippet, insertText: ["{sop: $0}", ""].join("\n"), insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet, documentation: "Start of part.", range: range },
-					{ label: "eop", kind: monaco.languages.CompletionItemKind.Text, insertText: ["{eop}", ""].join("\n"), documentation: "End of part.", range: range },
-					{ label: "start_of_part", kind: monaco.languages.CompletionItemKind.Snippet, insertText: ["{start_of_part: $0}", ""].join("\n"), insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet, documentation: "Start of part.", range: range },
-					{ label: "end_of_part", kind: monaco.languages.CompletionItemKind.Text, insertText: ["{end_of_part}", ""].join("\n"), documentation: "End of part.", range: range },
+					{ label: "part", kind: monaco.languages.CompletionItemKind.Snippet, insertText: ["{sop: $0}", "", "{eop}"].join("\n"), insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet, documentation: "Part snipped.", range: range },
+					{ label: "sop", kind: monaco.languages.CompletionItemKind.Snippet, insertText: ["{sop: $0}"].join("\n"), insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet, documentation: "Start of part.", range: range },
+					{ label: "eop", kind: monaco.languages.CompletionItemKind.Text, insertText: ["{eop}"].join("\n"), documentation: "End of part.", range: range },
+					{ label: "start_of_part", kind: monaco.languages.CompletionItemKind.Snippet, insertText: ["{start_of_part: $0}"].join("\n"), insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet, documentation: "Start of part.", range: range },
+					{ label: "end_of_part", kind: monaco.languages.CompletionItemKind.Text, insertText: ["{end_of_part}"].join("\n"), documentation: "End of part.", range: range },
 
 					// Tab
-					{ label: "tab", kind: monaco.languages.CompletionItemKind.Snippet, insertText: ["{sot}", "$0", "{eot}", ""].join("\n"), insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet, documentation: "Tab snipped.", range: range },
+					{ label: "tab", kind: monaco.languages.CompletionItemKind.Snippet, insertText: ["{sot}", "$0", "{eot}"].join("\n"), insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet, documentation: "Tab snipped.", range: range },
 					{ label: "sot", kind: monaco.languages.CompletionItemKind.Snippet, insertText: ["{sot}", "$0"].join("\n"), insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet, documentation: "Start of tab.", range: range },
-					{ label: "eot", kind: monaco.languages.CompletionItemKind.Text, insertText: ["{eot}", ""].join("\n"), documentation: "End of tab.", range: range },
+					{ label: "eot", kind: monaco.languages.CompletionItemKind.Text, insertText: ["{eot}"].join("\n"), documentation: "End of tab.", range: range },
 					{ label: "start_of_tab", kind: monaco.languages.CompletionItemKind.Snippet, insertText: ["{start_of_tab}", "$0"].join("\n"), insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet, documentation: "Start of tab.", range: range },
-					{ label: "end_of_tab", kind: monaco.languages.CompletionItemKind.Text, insertText: ["{end_of_tab}", ""].join("\n"), documentation: "End of tab.", range: range },
+					{ label: "end_of_tab", kind: monaco.languages.CompletionItemKind.Text, insertText: ["{end_of_tab}"].join("\n"), documentation: "End of tab.", range: range },
 
 					// Custom sections
-					{ label: "intro", kind: monaco.languages.CompletionItemKind.Snippet, insertText: ["{sop: Intro}", "$0", "{eop}", ""].join("\n"), insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet, documentation: "Insert intro section.", range: range },
+					{ label: "pre_chorus", kind: monaco.languages.CompletionItemKind.Snippet, insertText: ["{sop: Pre-Chorus}", "$0", "{eop}"].join("\n"), insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet, documentation: "Insert pre-chorus section.", range: range },
+					{ label: "post_chorus", kind: monaco.languages.CompletionItemKind.Snippet, insertText: ["{sop: Post-Chorus}", "$0", "{eop}"].join("\n"), insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet, documentation: "Insert post-chorus section.", range: range },
+					{ label: "intro", kind: monaco.languages.CompletionItemKind.Snippet, insertText: ["{sop: Intro}", "$0", "{eop}"].join("\n"), insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet, documentation: "Insert intro section.", range: range },
 					{ label: "outro", kind: monaco.languages.CompletionItemKind.Snippet, insertText: ["{sop: Outro}", "$0", "{eop}"].join("\n"), insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet, documentation: "Insert outro section.", range: range },
-					{ label: "instrumental", kind: monaco.languages.CompletionItemKind.Snippet, insertText: ["{sop: Instrumental}", "$0", "{eop}", ""].join("\n"), insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet, documentation: "Insert instrumental section.", range: range },
-					{ label: "solo", kind: monaco.languages.CompletionItemKind.Snippet, insertText: ["{sop: Solo}", "$0", "{eop}", ""].join("\n"), insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet, documentation: "Insert solo section.", range: range },
+					{ label: "instrumental", kind: monaco.languages.CompletionItemKind.Snippet, insertText: ["{sop: Instrumental}", "$0", "{eop}"].join("\n"), insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet, documentation: "Insert instrumental section.", range: range },
+					{ label: "solo", kind: monaco.languages.CompletionItemKind.Snippet, insertText: ["{sop: Solo}", "$0", "{eop}"].join("\n"), insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet, documentation: "Insert solo section.", range: range },
 					{ label: "comment", kind: monaco.languages.CompletionItemKind.Snippet, insertText: "{c: $0}", insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet, documentation: "Insert comment.", range: range },
 				];
 				return { suggestions: suggestions };
