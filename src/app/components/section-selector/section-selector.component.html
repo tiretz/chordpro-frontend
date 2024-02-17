@@ -1,6 +1,0 @@
-<mat-grid-list cols="2" rowHeight="35px" gutterSize="5px" *ngIf="sections.length > 0">
-    <mat-grid-tile *ngFor="let section of sections">
-        <button mat-raised-button color="primary" [matTooltip]="section.toString()" matTooltipPosition="below" (click)="insertSection(section)">{{section}}</button>
-    </mat-grid-tile>
-</mat-grid-list>
-<mat-divider *ngIf="sections.length > 0"></mat-divider>

@@ -65,19 +65,19 @@
 				"serve": {
 					"builder": "@angular-devkit/build-angular:dev-server",
 					"configurations": {
-						"production": {
-							"browserTarget": "chordpro:build:production"
+            "production": {
+              "buildTarget": "chordpro:build:production"
 						},
-						"development": {
-							"browserTarget": "chordpro:build:development"
+            "development": {
+              "buildTarget": "chordpro:build:development"
 						}
 					},
 					"defaultConfiguration": "development"
 				},
 				"extract-i18n": {
 					"builder": "@angular-devkit/build-angular:extract-i18n",
-					"options": {
-						"browserTarget": "chordpro:build"
+          "options": {
+            "buildTarget": "chordpro:build"
 					}
 				},
 				"test": {

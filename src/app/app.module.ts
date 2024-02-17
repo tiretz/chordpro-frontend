@@ -4,16 +4,16 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './components/header/header.component';
-import { BodyComponent } from './components/body/body.component';
-import { EditorComponent } from './components/editor/editor.component';
-import { NewDialogComponent } from './components/new-dialog/new-dialog.component';
-import { FooterComponent } from './components/footer/footer.component';
-import { OverrideDialogComponent } from './components/override-dialog/override-dialog.component';
-import { ChordSelectorComponent } from './components/chord-selector/chord-selector.component';
-import { LoadingOverlayComponent } from './components/loading-overlay/loading-overlay.component';
-import { SectionSelectorComponent } from './components/section-selector/section-selector.component';
-import { InlinesSelectorComponent } from './components/inlines-selector/inlines-selector.component';
+import { HeaderComponent } from './layout/header/header.component';
+import { BodyComponent } from './layout/body/body.component';
+import { EditorComponent } from './modules/editor/components/editor/editor.component';
+import { NewDialogComponent } from './modules/editor/components/new-dialog/new-dialog.component';
+import { FooterComponent } from './layout/footer/footer.component';
+import { OverrideDialogComponent } from './modules/editor/components/override-dialog/override-dialog.component';
+import { ChordSelectorComponent } from './modules/editor/components/chord-selector/chord-selector.component';
+import { LoadingOverlayComponent } from './modules/editor/components/loading-overlay/loading-overlay.component';
+import { SectionSelectorComponent } from './modules/editor/components/section-selector/section-selector.component';
+import { InlinesSelectorComponent } from './modules/editor/components/inlines-selector/inlines-selector.component';
 
 import { MonacoEditorModule, NgxMonacoEditorConfig } from 'ngx-monaco-editor-v2';
 
@@ -54,7 +54,7 @@ const monacoConfig: NgxMonacoEditorConfig = {
 		ChordSelectorComponent,
 		LoadingOverlayComponent,
 		SectionSelectorComponent,
-  		InlinesSelectorComponent
+		InlinesSelectorComponent,
 	],
 	imports: [
 		BrowserModule,
@@ -78,10 +78,9 @@ const monacoConfig: NgxMonacoEditorConfig = {
 		MatTooltipModule,
 		MatSelectModule,
 		NgxMaskDirective,
-		NgxMaskPipe
+		NgxMaskPipe,
 	],
-	providers: [ provideEnvironmentNgxMask() ],
-	bootstrap: [ AppComponent ]
+	providers: [provideEnvironmentNgxMask()],
+	bootstrap: [AppComponent],
 })
-
-export class AppModule { }
+export class AppModule {}

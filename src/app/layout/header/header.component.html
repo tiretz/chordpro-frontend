@@ -1,0 +1,13 @@
+<mat-toolbar color="primary">
+	<img id="logo" src="../../../assets/logo_64x64.png" alt="Logo" height="36" />
+	<span>ChordPro - Editor</span>
+	<span class="horizontal-spacer"></span>
+	<button id="new-button" mat-raised-button extended color="accent" (click)="openDialog()">
+		<mat-icon>add</mat-icon>
+		New
+	</button>
+	<button id="download-button" mat-raised-button extended color="accent" (click)="onDownloadButtonClick()">
+		<mat-icon>download</mat-icon>
+		Download
+	</button>
+</mat-toolbar>

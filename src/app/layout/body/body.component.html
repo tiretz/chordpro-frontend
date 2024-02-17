@@ -1,0 +1,10 @@
+<mat-sidenav-container id="sidenav-container" [hasBackdrop]="false">
+	<mat-sidenav id="sidenav" opened mode="side" disableClose="true">
+		<app-chord-selector></app-chord-selector>
+		<app-inlines-selector></app-inlines-selector>
+		<app-section-selector></app-section-selector>
+	</mat-sidenav>
+	<mat-sidenav-content id="editor-container" (window:resize)="onEditorContainerResize()" onresize="onEditorContainerResize()">
+		<app-editor></app-editor>
+	</mat-sidenav-content>
+</mat-sidenav-container>
