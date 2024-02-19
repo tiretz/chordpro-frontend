@@ -11,13 +11,13 @@ export class ApiService {
 
 	async getSongs(songTitle: string, songArtists: string): Promise<ITrackInfo[]> {
 		return await firstValueFrom(
-			this.http.get<ITrackInfo[]>('http://localhost:5001/songs/', {
+			this.http.get<ITrackInfo[]>('http://localhost:5001/song/', {
 				params: { title: songTitle, artists: songArtists },
 			})
 		);
 	}
 
 	async getSongInfo(songId: string): Promise<ISong> {
-		return await firstValueFrom(this.http.get<ISong>(`http://localhost:5001/songs/${songId}`));
+		return await firstValueFrom(this.http.get<ISong>(`http://localhost:5001/song/${songId}`));
 	}
 }
