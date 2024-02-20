@@ -1,4 +1,4 @@
-import { Injectable, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Injectable, OnDestroy, OnInit } from '@angular/core';
 import { ISong } from '../models/api.results';
 import { ApiService } from './api.service';
 import { DocumentService } from './document.service';
@@ -30,7 +30,7 @@ export class EditorService implements OnDestroy {
 		this.chordsSubscription?.unsubscribe();
 	}
 
-	initMonacoEditor(editor: any) {
+	initMonacoEditor(editor: any): void {
 		const monaco = (<any>window).monaco;
 
 		// Register a new language
@@ -469,16 +469,76 @@ export class EditorService implements OnDestroy {
 		return this.editor?.getValue();
 	}
 
-	setEditorValue(value: string) {
+	setEditorValue(value: string): void {
 		this.editor?.setValue(value);
 	}
 
-	onValueChange(event: any) {
+	async onValueChange(event: any): Promise<void> {
 		const content = this.getEditorValue();
 
-		if (content == null) return;
+		if (!content) return;
 
-		const regexMatches: IterableIterator<RegExpMatchArray> = content.matchAll(/\[(.*?)\]/g);
+		await this.checkKeyChange(content);
+		this.updateChordSelector(content);
+	}
+
+	async initNewAutomaticSong(songInformation: IAutomaticDialogResult): Promise<void> {
+		this.loadingOverlayService.showLoadingOverlay('Query song data ...');
+
+		const songInfo: ISong = await this.apiService.getSongInfo(songInformation.id);
+
+		if (songInfo === null) return;
+
+		this.loadingOverlayService.updateLoadingOverlayMessage('Filling song template ...');
+
+		this.documentService.setDocumentData(songInfo);
+
+		this.setEditorValue(this.generateSongTemplateWithLyrics(songInfo));
+
+		this.loadingOverlayService.hideLoadingOverlay();
+	}
+
+	initNewManualSong(songInformationAndMetaData: IManualDialogResult): void {
+		const songInfo = songInformationAndMetaData as ISong;
+
+		this.loadingOverlayService.showLoadingOverlay('Filling song template ...');
+
+		this.documentService.setDocumentData(songInfo);
+
+		this.setEditorValue(this.generateSongTemplateWithLyrics(songInfo));
+
+		this.loadingOverlayService.hideLoadingOverlay();
+	}
+
+	insertChord(chord: string): void {
+		this.editor.executeEdits('insert-chord', [
+			{
+				range: this.editor.getSelection(),
+				text: `[${chord}]`,
+				forceMoveMarkers: true,
+			},
+		]);
+		this.editor.focus();
+	}
+
+	private generateSongTemplateWithLyrics(songInfo: ISong): string {
+		return [
+			`{title: ${songInfo.title}}`,
+			`{artist: ${songInfo.artists.join(', ')}}`,
+			`{album: ${songInfo.albumName}}`,
+			`{key: ${songInfo.key}}`,
+			`{tempo: ${Number(songInfo.tempo).toFixed(0)}}`,
+			`{time: ${songInfo.timeSignature}}`,
+			`{duration: ${songInfo.duration}}`,
+			'{midi: PC0.0:0}',
+			'{keywords: English}',
+			'',
+			adaptLyrics(songInfo.lyrics) || '',
+		].join('\n');
+	}
+
+	private updateChordSelector(content: string): void {
+		const regexMatches: IterableIterator<RegExpMatchArray> = content.matchAll(/\[(([A-G](#|b)?)(\(?(M|maj|major|m|min|minor|dim|sus|dom|aug)?(\+|-|add)?\d*\)?)(\/([A-G](#|b)?))?)\]/g);
 		const matches: RegExpMatchArray[] = [...regexMatches];
 
 		if (matches.length === 0) return;
@@ -511,58 +571,25 @@ export class EditorService implements OnDestroy {
 		this.communicationService.updateChords(chordsSortedByOccurrence);
 	}
 
-	async initNewAutomaticSong(songInformation: IAutomaticDialogResult) {
-		this.loadingOverlayService.showLoadingOverlay('Query song data ...');
+	private async checkKeyChange(content: string): Promise<void> {
+		const regexMatches: IterableIterator<RegExpMatchArray> = content.matchAll(/{key: ?([A-G][b|#]?m?)}/g);
+		const matches: RegExpMatchArray[] = [...regexMatches];
 
-		const songInfo: ISong = await this.apiService.getSongInfo(songInformation.id);
+		if (matches.length === 0) return;
 
-		if (songInfo === null) return;
+		for (const match of matches) {
+			const newKey = match[1];
 
-		this.loadingOverlayService.updateLoadingOverlayMessage('Filling song template ...');
+			if (newKey == this.documentService.songInfo?.key) break;
 
-		this.documentService.setDocumentData(songInfo);
+			const newChord = await this.apiService.getChordInfoByNoteName(newKey);
 
-		this.setEditorValue(this.generateSongTemplateWithLyrics(songInfo));
-
-		this.loadingOverlayService.hideLoadingOverlay();
-	}
-
-	initNewManualSong(songInformationAndMetaData: IManualDialogResult) {
-		const songInfo = songInformationAndMetaData as ISong;
-
-		this.loadingOverlayService.showLoadingOverlay('Filling song template ...');
-
-		this.documentService.setDocumentData(songInfo);
-
-		this.setEditorValue(this.generateSongTemplateWithLyrics(songInfo));
-
-		this.loadingOverlayService.hideLoadingOverlay();
-	}
-
-	insertChord(chord: string) {
-		this.editor.executeEdits('insert-chord', [
-			{
-				range: this.editor.getSelection(),
-				text: `[${chord}]`,
-				forceMoveMarkers: true,
-			},
-		]);
-		this.editor.focus();
-	}
-
-	private generateSongTemplateWithLyrics(songInfo: ISong): string {
-		return [
-			`{title: ${songInfo.title}}`,
-			`{artist: ${songInfo.artists.join(', ')}}`,
-			`{album: ${songInfo.albumName}}`,
-			`{key: ${songInfo.chords[0]}}`,
-			`{tempo: ${Number(songInfo.tempo).toFixed(0)}}`,
-			`{time: ${songInfo.timeSignature}}`,
-			`{duration: ${songInfo.duration}}`,
-			'{midi: PC0.0:0}',
-			'{keywords: English}',
-			'',
-			adaptLyrics(songInfo.lyrics) || '',
-		].join('\n');
+			if (this.documentService.songInfo) {
+				this.documentService.songInfo.key = newChord.key!;
+				this.documentService.songInfo.chords = newChord.chords;
+				this.communicationService.setInitialChords(newChord.chords);
+			}
+			break;
+		}
 	}
 }

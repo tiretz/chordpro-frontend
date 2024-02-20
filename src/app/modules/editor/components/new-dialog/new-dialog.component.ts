@@ -4,8 +4,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { MatTabChangeEvent } from '@angular/material/tabs';
 import { ApiService } from 'src/app/core/services/api.service';
 import { IAutomaticDialogResult, IManualDialogResult } from 'src/app/core/models/dialog.results';
-import { ITrackInfo } from 'src/app/core/models/api.results';
-import { getChordsByKeyAndMode } from 'src/app/shared/utils/utils';
+import { IChord, ITrackInfo } from 'src/app/core/models/api.results';
 
 enum SongKey {
 	'A' = 9,
@@ -14,7 +13,7 @@ enum SongKey {
 	'C' = 0,
 	'C#/Db' = 1,
 	'D' = 2,
-	'D#/EB' = 3,
+	'D#/Eb' = 3,
 	'E' = 4,
 	'F' = 5,
 	'F#/Gb' = 6,
@@ -79,13 +78,13 @@ export class NewDialogComponent {
 		}
 	}
 
-	onCreateButtonClick() {
+	async onCreateButtonClick() {
 		if (this.selectedTabIndex == 0) {
 			this.dialogRef.close(this.selectedSong as IAutomaticDialogResult);
 			return;
 		}
 
-		const chords = getChordsByKeyAndMode(this.songKey, this.songMode);
+		const chord: IChord = await this.apiService.getChordInfoByPitchClassAndMode(this.songKey, this.songMode);
 
 		const manualDialogResult: IManualDialogResult = {
 			albumName: this.songAlbum,
@@ -93,10 +92,10 @@ export class NewDialogComponent {
 			title: this.songTitle,
 			tempo: this.songTempo,
 			duration: this.songDuration,
-			key: chords.length > 0 ? chords[0] : '',
+			key: chord.key || '',
 			timeSignature: this.songTime,
 			albumCoverUrl: '',
-			chords,
+			chords: chord.chords,
 			albumReleaseDate: new Date(),
 			spotifyUrl: '',
 			id: '',

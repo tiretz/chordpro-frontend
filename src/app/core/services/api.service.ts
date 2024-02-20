@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ITrackInfo, ISong } from '../models/api.results';
+import { ITrackInfo, ISong, IChord } from '../models/api.results';
 import { HttpClient } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
 
@@ -13,11 +13,19 @@ export class ApiService {
 		return await firstValueFrom(
 			this.http.get<ITrackInfo[]>('http://localhost:5001/song/', {
 				params: { title: songTitle, artists: songArtists },
-			})
+			}),
 		);
 	}
 
 	async getSongInfo(songId: string): Promise<ISong> {
 		return await firstValueFrom(this.http.get<ISong>(`http://localhost:5001/song/${songId}`));
+	}
+
+	async getChordInfoByPitchClassAndMode(pitchClass: number, mode: number): Promise<IChord> {
+		return await firstValueFrom(this.http.get<IChord>(`http://localhost:5001/chord/byPitchClass/${pitchClass}/${mode}`));
+	}
+
+	async getChordInfoByNoteName(noteName: string): Promise<IChord> {
+		return await firstValueFrom(this.http.get<IChord>(`http://localhost:5001/chord/bynoteName/${noteName}`));
 	}
 }

@@ -22,3 +22,10 @@ export interface ITrackLyrics {
 }
 
 export interface ISong extends ITrackInfo, ITrackMetaInfo, ITrackLyrics {}
+
+export interface IChord {
+	key: string | undefined;
+	tonic: string | undefined;
+	mode: string | undefined;
+	chords: string[];
+}

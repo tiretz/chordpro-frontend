@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { CommunicationService } from 'src/app/core/services/communication.service';
 import { EditorService } from 'src/app/core/services/editor.service';
@@ -13,7 +13,7 @@ export class ChordSelectorComponent implements OnInit, OnDestroy {
 
 	private initialChordsSubscription: Subscription | undefined;
 
-	constructor(private communicationService: CommunicationService, private editorService: EditorService) {}
+	constructor(private readonly cdr: ChangeDetectorRef, private communicationService: CommunicationService, private editorService: EditorService) {}
 
 	ngOnDestroy(): void {
 		this.initialChordsSubscription?.unsubscribe();
@@ -22,6 +22,7 @@ export class ChordSelectorComponent implements OnInit, OnDestroy {
 	ngOnInit(): void {
 		this.initialChordsSubscription = this.communicationService.chords$.subscribe((chords) => {
 			this.chords = chords;
+			this.cdr.detectChanges();
 		});
 	}
 
