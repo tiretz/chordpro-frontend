@@ -480,6 +480,9 @@ export class EditorService implements OnDestroy {
 
 		await this.checkKeyChange(content);
 		this.updateChordSelector(content);
+
+		this.updateSongTitle(content);
+		this.updateSongArtitst(content);
 	}
 
 	async initNewAutomaticSong(songInformation: IAutomaticDialogResult): Promise<void> {
@@ -588,6 +591,42 @@ export class EditorService implements OnDestroy {
 				this.documentService.songInfo.key = newChord.key!;
 				this.documentService.songInfo.chords = newChord.chords;
 				this.communicationService.setInitialChords(newChord.chords);
+			}
+			break;
+		}
+	}
+
+	private updateSongTitle(content: string): void {
+		const regexMatches: IterableIterator<RegExpMatchArray> = content.matchAll(/{title: ?(.*?)}/g);
+		const matches: RegExpMatchArray[] = [...regexMatches];
+
+		if (matches.length === 0) return;
+
+		for (const match of matches) {
+			const newTitle = match[1];
+
+			if (newTitle == this.documentService.songInfo?.title) break;
+
+			if (this.documentService.songInfo) {
+				this.documentService.songInfo.title = newTitle;
+			}
+			break;
+		}
+	}
+
+	private updateSongArtitst(content: string): void {
+		const regexMatches: IterableIterator<RegExpMatchArray> = content.matchAll(/{artist: ?(.*?)}/g);
+		const matches: RegExpMatchArray[] = [...regexMatches];
+
+		if (matches.length === 0) return;
+
+		for (const match of matches) {
+			const newArtists = match[1];
+
+			if (newArtists == this.documentService.songInfo?.title) break;
+
+			if (this.documentService.songInfo) {
+				this.documentService.songInfo.artists = [newArtists];
 			}
 			break;
 		}
