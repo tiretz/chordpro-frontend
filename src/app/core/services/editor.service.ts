@@ -541,7 +541,7 @@ export class EditorService implements OnDestroy {
 	}
 
 	private updateChordSelector(content: string): void {
-		const regexMatches: IterableIterator<RegExpMatchArray> = content.matchAll(/\[(([A-G](#|b)?)(\(?(M|maj|major|m|min|minor|dim|sus|dom|aug)?(\+|-|add)?\d*\)?)(\/([A-G](#|b)?))?)\]/g);
+		const regexMatches: IterableIterator<RegExpMatchArray> = content.matchAll(/\[(([A-G](#|b)?(\d)?)(\(?(M|maj|major|m|min|minor|dim|sus|dom|aug)?(\+|-|add)?\d*\)?)(\/([A-G](#|b)?))?)\]/g);
 		const matches: RegExpMatchArray[] = [...regexMatches];
 
 		if (matches.length === 0) return;
