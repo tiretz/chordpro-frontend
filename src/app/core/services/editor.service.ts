@@ -481,8 +481,7 @@ export class EditorService implements OnDestroy {
 		await this.checkKeyChange(content);
 		this.updateChordSelector(content);
 
-		this.updateSongTitle(content);
-		this.updateSongArtitst(content);
+		this.updateSongInfo(content);
 	}
 
 	async initNewAutomaticSong(songInformation: IAutomaticDialogResult): Promise<void> {
@@ -596,39 +595,32 @@ export class EditorService implements OnDestroy {
 		}
 	}
 
-	private updateSongTitle(content: string): void {
-		const regexMatches: IterableIterator<RegExpMatchArray> = content.matchAll(/{title: ?(.*?)}/g);
-		const matches: RegExpMatchArray[] = [...regexMatches];
-
-		if (matches.length === 0) return;
-
-		for (const match of matches) {
-			const newTitle = match[1];
-
-			if (newTitle == this.documentService.songInfo?.title) break;
-
-			if (this.documentService.songInfo) {
-				this.documentService.songInfo.title = newTitle;
-			}
-			break;
+	private updateSongInfo(content: string): void {
+		if (!this.documentService.songInfo) {
+			this.documentService.songInfo = {
+				albumCoverUrl: '',
+				albumName: '',
+				albumReleaseDate: new Date(),
+				artists: [],
+				chords: [],
+				duration: '',
+				id: '',
+				key: '',
+				lyrics: '',
+				mode: 0,
+				spotifyUrl: '',
+				tempo: '',
+				timeSignature: '',
+				title: '',
+			};
 		}
-	}
 
-	private updateSongArtitst(content: string): void {
-		const regexMatches: IterableIterator<RegExpMatchArray> = content.matchAll(/{artist: ?(.*?)}/g);
-		const matches: RegExpMatchArray[] = [...regexMatches];
-
-		if (matches.length === 0) return;
-
-		for (const match of matches) {
-			const newArtists = match[1];
-
-			if (newArtists == this.documentService.songInfo?.title) break;
-
-			if (this.documentService.songInfo) {
-				this.documentService.songInfo.artists = [newArtists];
-			}
-			break;
-		}
+		this.documentService.songInfo.title = [...content.matchAll(/{title: ?(.*?)}/g)]?.[0]?.[1];
+		this.documentService.songInfo.artists = [[...content.matchAll(/{artist: ?(.*?)}/g)]?.[0]?.[1]];
+		this.documentService.songInfo.albumName = [...content.matchAll(/{album: ?(.*?)}/g)]?.[0]?.[1];
+		this.documentService.songInfo.key = [...content.matchAll(/{key: ?(.*?)}/g)]?.[0]?.[1];
+		this.documentService.songInfo.tempo = [...content.matchAll(/{tempo: ?(.*?)}/g)]?.[0]?.[1];
+		this.documentService.songInfo.timeSignature = [...content.matchAll(/{time: ?(.*?)}/g)]?.[0]?.[1];
+		this.documentService.songInfo.duration = [...content.matchAll(/{duration: ?(.*?)}/g)]?.[0]?.[1];
 	}
 }
