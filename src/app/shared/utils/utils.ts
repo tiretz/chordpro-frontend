@@ -38,10 +38,8 @@ export function adaptLyrics(lyrics: string): string {
 				adaptedLyrics.push(`{sov: Verse ${verseNumber ? verseNumber[0] : ''}}`);
 				closeTag = '{eov}';
 			} else if (['chorus', 'refrain', 'hook'].some((el) => matchToLower.includes(el))) {
-				const verseNumber = matchToLower.match(/\d+/g);
-
-				adaptedLyrics.push(`{sov: Verse ${verseNumber ? verseNumber[0] : ''}}`);
-				closeTag = '{eov}';
+				adaptedLyrics.push(`{soc: Chorus}`);
+				closeTag = '{eoc}';
 			} else if (['bridge', 'breakdown'].some((el) => matchToLower.includes(el))) {
 				adaptedLyrics.push(`{sob: Bridge}`);
 				closeTag = '{eob}';
